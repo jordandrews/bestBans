@@ -13,7 +13,11 @@
 </head>
 
 <body>
-<h3>TOP ${tier.toUpperCase()} BANS</h3>
+<div class="row">
+    <div class="col-md-9">
+        <h3>TOP ${tier.toUpperCase()} BANS</h3>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-9">
@@ -38,8 +42,8 @@
                     <br/>
                 </g:if>
             </g:each>
+            <hr/>
         </g:if>
-        <hr/>
         <table class="table-bordered table-striped">
             <thead>
             <tr>
