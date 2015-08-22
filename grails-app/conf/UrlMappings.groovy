@@ -7,7 +7,7 @@ class UrlMappings {
             }
         }
 
-        "/"(view:"/index")
+        "/"(controller: "bestBans", action: "index")
         "500"(view:'/error')
 	}
 }
