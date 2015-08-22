@@ -17,28 +17,28 @@
 
 <div class="row">
     <div class="col-md-9">
-        <g:each in="${banList[0..11]}" var="champData" status="i">
-
-            <g:if test="${i%4==0}"  >
-                <div class="row">
-            </g:if>
-            <div class="col-md-3">
-                <div style="text-align: center"><g:img  file="champIcons/ChampionSplashes/${champData.champion}splash.png"  width="${117}" height="${212}"/></div>
-                <div style="text-align: center"><b>#${i+1}: ${champData.displayName.toUpperCase()}</b></div>
-                <div style="text-align: center">Influence: ${champData.power.round(2)} </div>
-                <div style="text-align: center">Win Rate: ${champData.winrate.round(2)}% </div>
-                <div style="text-align: center">Pick Rate: ${champData.adjustedPickRate.round(2)}% </div>
-
-            </div>
-            <g:if test="${i%4==3}">
-                <g:if test="${i<4}">
+        <g:if test="${banList.size() >= 12}">
+            <g:each in="${banList[0..11]}" var="champData" status="i">
+                <g:if test="${i%4==0}"  >
+                    <div class="row">
                 </g:if>
+                <div class="col-md-3">
+                    <div style="text-align: center"><g:img  file="champIcons/ChampionSplashes/${champData.champion}splash.png"  width="${117}" height="${212}"/></div>
+                    <div style="text-align: center"><b>#${i+1}: ${champData.displayName.toUpperCase()}</b></div>
+                    <div style="text-align: center">Influence: ${champData.power.round(2)} </div>
+                    <div style="text-align: center">Win Rate: ${champData.winrate.round(2)}% </div>
+                    <div style="text-align: center">Pick Rate: ${champData.adjustedPickRate.round(2)}% </div>
 
                 </div>
-                <br/>
-            </g:if>
-        </g:each>
+                <g:if test="${i%4==3}">
+                    <g:if test="${i<4}">
+                    </g:if>
 
+                    </div>
+                    <br/>
+                </g:if>
+            </g:each>
+        </g:if>
         <hr/>
         <table class="table-bordered table-striped">
             <thead>
