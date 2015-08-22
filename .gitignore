@@ -31,3 +31,10 @@
 
 # "temporary" build files
 /target
+
+# ".DS_Store" files
+*.DS_Store
+*/*.DS_Store
+
+#project file from intellij
+*.iml
