@@ -10,6 +10,7 @@
 <body>
 
 <div class="row col-md-12">
+    <div class="col-md-1"> </div>
     <g:each in="${RankTiers*.description}" var="tier">
         <div class="col-md-2">
             <g:link controller="bestBans" action="${tier}">
@@ -20,6 +21,8 @@
             </g:link>
         </div>
     </g:each>
+    <div class="col-md-1"> </div>
+
 </div>
 
 <div class="row col-md-12">
