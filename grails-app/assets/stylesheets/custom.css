@@ -53,8 +53,9 @@ body {
 
 .panel-default {
     border-color: #ddd;
-    color: #333;
+    color: #222;
     background-color: #e0e0e0;
+    text-shadow: 0 0 0 rgba(0,0,0,.5);
 }
 .panel-default > .panel-heading {
     color: #333;
