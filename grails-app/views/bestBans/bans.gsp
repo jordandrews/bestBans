@@ -23,7 +23,7 @@
                 <div class="row">
             </g:if>
             <div class="col-md-3">
-                <div style="text-align: center"><g:img  file="champIcons/ChampionSplashes/${champData.champion}Splash.png"  width="${117}" height="${212}"/></div>
+                <div style="text-align: center"><g:img  file="champIcons/ChampionSplashes/${champData.champion}splash.png"  width="${117}" height="${212}"/></div>
                 <div style="text-align: center"><b>#${i+1}: ${champData.displayName.toUpperCase()}</b></div>
                 <div style="text-align: center">Influence: ${champData.power.round(2)} </div>
                 <div style="text-align: center">Win Rate: ${champData.winrate.round(2)}% </div>
