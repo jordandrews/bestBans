@@ -29,12 +29,50 @@
 /plugins
 /web-app/plugins
 
-# "temporary" build files
-/target
 
 # ".DS_Store" files
 *.DS_Store
 */*.DS_Store
 
-#project file from intellij
+*.class
+*.log
+*.iws
+*.ser
+*.bak
+*.ids
+*.jasper
+workspace.xml
+.classpath
+.project
+*.userlibraries
+*.eml
+*.swp
+*.tmp
+devDb.*
+Thumbs.db
+plugin.xml
+.sonar/
+.settings/
+/*-config.groovy
+testorder.txt
+
+# These are regenerated each time you run grails upgrade
+web-app/css/main.css
+web-app/css/mobile.css
+
+/*/tomcat.8080
+/target
+**/logs
+/build
+/reports
+/.gradle
 *.iml
+*.ipr
+/.idea
+.grails*
+**/target
+out/
+
+**/web-app/WEB-INF/tld/c.tld
+**/web-app/WEB-INF/tld/fmt.tld
+**/web-app/WEB-INF/atmosphere-decorators.xml
