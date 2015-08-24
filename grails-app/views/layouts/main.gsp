@@ -1,3 +1,4 @@
+<%@ page import="grails.util.Environment" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,6 +69,9 @@
 				<li><g:link controller="bestBans" action="platinum">Platinum</g:link></li>
 				<li><g:link controller="bestBans" action="diamond">Diamond</g:link></li>
 			</ul>
+			%{--<g:if test="${Environment.current == Environment.DEVELOPMENT}">--}%
+				<div class="ribbon-wrapper"><div class="ribbon">BETA</div></div>
+			%{--</g:if>--}%
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
