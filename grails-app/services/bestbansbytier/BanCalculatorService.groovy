@@ -1,15 +1,13 @@
 package bestbansbytier
 
-import grails.transaction.Transactional
-
 import java.text.DecimalFormat
 
-@Transactional
 class BanCalculatorService {
+    static transactional = false
 
     Map<RankTiers, List<ChampData>> banMap = [:]
     def daysToCheck = 3
-    def delayParse = 500
+    def delayParse = 300
     String region = "na" //na, euw, eune, br
 
     List<ChampData> getBans(tier){
