@@ -7,7 +7,7 @@ class BanCalculatorService {
 
     Map<RankTiers, List<ChampData>> banMap = [:]
     def daysToCheck = 3
-    def delayParse = 300
+    def delayParse = 500
     String region = "na" //na, euw, eune, br
 
     List<ChampData> getBans(tier){
