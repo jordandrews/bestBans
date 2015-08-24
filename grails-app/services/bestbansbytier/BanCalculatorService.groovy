@@ -1,9 +1,11 @@
 package bestbansbytier
 
+import grails.transaction.Transactional
+
 import java.text.DecimalFormat
 
+@Transactional
 class BanCalculatorService {
-    static transactional = false
 
     Map<RankTiers, List<ChampData>> banMap = [:]
     def daysToCheck = 3
@@ -15,13 +17,6 @@ class BanCalculatorService {
     }
 
     def calculateBans() {
-        //The parens around the RankTiers enum makes sure the code keys these values as the enum instead of a string like 'RankTiers.Bronze'
-        List<ChampData> bronzeList   = []
-        List<ChampData> silverList   = []
-        List<ChampData> goldList     = []
-        List<ChampData> platinumList = []
-        List<ChampData> diamondList  = []
-
         //This is the array creator and calculator
         //It starts off with a huge loop that runs once per champion.
         //First, it gathers the HTML of the Lolking site on ban data
