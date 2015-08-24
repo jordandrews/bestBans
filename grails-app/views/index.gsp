@@ -26,7 +26,7 @@
 </div>
 
 <div class="row col-md-12">
-	<g:render template="info" model="[isHome: true]"/>
+	<g:render template="bestBans/info" model="[isHome: true]"/>
 	<p>Thanks for reading! I hope this may serve of use. I intend to make one of these posts for every patch, so look forward to it!</p>
 </div>
 </body>
