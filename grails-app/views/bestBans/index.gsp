@@ -8,12 +8,12 @@
 </head>
 
 <body>
-<g:if test="${banList.size() < 126}" >
-    <div class="alert alert-info" role="info">
-        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-        The champion data has not finished populating.  Currently data for ${banList.size()} of 126 champions has been loaded
-    </div>
-</g:if>
+%{--<g:if test="${banList.size() < 126}" >--}%
+    %{--<div class="alert alert-info" role="info">--}%
+        %{--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>--}%
+        %{--The champion data has not finished populating.  Currently data for ${banList.size()} of 126 champions has been loaded--}%
+    %{--</div>--}%
+%{--</g:if>--}%
 
 <div class="row col-md-12">
     <div class="col-md-1"> </div>
