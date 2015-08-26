@@ -45,9 +45,8 @@ class BanCalculatorService {
                 Double pickrate = 0.0;
 
                 //Days to average
+                String parsedHTMLOrigin = parseWinPickHTML(tier.description, champName, region);
                 for(int k=1; k<=daysToCheck; k++) {
-                    String parsedHTMLOrigin = parseWinPickHTML(tier.description, champName, region);
-
                     String parsedHTML = narrowData(parsedHTMLOrigin, "winrateLineBig", 0, "true");
                     winrate += calculateWinPickRate(parsedHTML, k);
 
