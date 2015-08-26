@@ -1,4 +1,3 @@
-import org.apache.xml.serializer.utils.URI
 
 dataSource {
     pooled = true
