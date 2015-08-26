@@ -8,7 +8,6 @@
 </head>
 
 <body>
-
 <div class="row col-md-12">
 	<div class="col-md-1"> </div>
 	<g:each in="${RankTiers*.description}" var="tier">
