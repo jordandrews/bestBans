@@ -33,7 +33,7 @@ environments {
         dataSource {
             dbCreate = "update"
             driverClassName = "org.postgresql.Driver"
-            dialect = org.hibernate.dialect.PostgreSQLDialect
+            dialect = org.hibernate.dialect.PostgreSQL81Dialect
 
             uri = new URI(System.env.DATABASE_URL?:"postgres://test:test@localhost/test")
 
