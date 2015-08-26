@@ -33,10 +33,16 @@ table tr td{
 html,
 body {
     height: 100%;
-    background-color: #222;
 }
+
 body {
     color: #fff;
+    /*background: #222 url("../images/Background.png") repeat center fixed;*/
+    background-color: #222;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
     text-align: center;
     text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
@@ -155,31 +161,3 @@ body {
     text-shadow: 0 0 0;
 }
 
-
-/*:before, :after {*/
-    /*content: "";*/
-    /*border-top: 3px solid red;*/
-    /*border-left: 3px solid transparent;*/
-    /*border-right: 3px solid transparent;*/
-    /*position: absolute;*/
-    /*bottom: -3px;*/
-/*}*/
-
-/*:before {*/
-    /*left: 0;*/
-/*}*/
-
-/*:after {*/
-    /*right: 0;*/
-/*}*/
-/*}*/
-
-/*BACKGROUND IMAGE*/
-/*body {*/
-/*background: url('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQnby25G0IgQ0e1SA5eFGxzAO6-aNtaTxXnR2J8XjZofvoqPGf4')*/
-/*no-repeat center center fixed;*/
-/*-webkit-background-size: cover;*/
-/*-moz-background-size: cover;*/
-/*background-size: cover;*/
-/*-o-background-size: cover;*/
-/*}*/
