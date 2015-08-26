@@ -3,7 +3,20 @@ package bestbansbytier
 class BestBansController {
     BanCalculatorService banCalculatorService
 
-    def index() { }
+    def index() {
+        Map<String, List<ChampData>> banMap = [:]
+
+        RankTiers.each{ tier ->
+            def champs = ChampData.findAllByRank(tier).sort{-it.power}
+            if(champs.size() > 3){
+                banMap[tier.description] = champs[0..3]
+            }
+        }
+
+        def dataCount = ChampData.countByRank(RankTiers.DIAMOND) // should be the last to finish updating
+
+        render(view: 'index', model: [banMap: banMap, dataCount: dataCount])
+    }
 
     def bronze() {
         List<ChampData> banList = ChampData.findAllByRank(RankTiers.BRONZE).sort{-it.power}
