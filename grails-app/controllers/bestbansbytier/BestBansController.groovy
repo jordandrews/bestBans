@@ -12,7 +12,7 @@ class BestBansController {
             if(champs.size() > 3){
                 banMap[tier.description] = champs[0..3]
             }
-            dataCount = ChampData.countByRank(RankTiers.DIAMOND) // should be the last to finish updating
+            dataCount = ChampData.findAllByRank(tier).size() // should be the last to finish updating
         }
 
 
