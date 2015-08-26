@@ -8,32 +8,52 @@
 </head>
 
 <body>
-%{--<g:if test="${banList.size() < 126}" >--}%
-    %{--<div class="alert alert-info" role="info">--}%
-        %{--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>--}%
-        %{--The champion data has not finished populating.  Currently data for ${banList.size()} of 126 champions has been loaded--}%
-    %{--</div>--}%
-%{--</g:if>--}%
+<g:if test="${dataCount < 126 }" >
+    <div class="alert alert-info" role="info">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        Champion data has not finished populating, and therefore may not be accurate.  Currently data for ${dataCount ?: 0} of 126 champions has been loaded
+    </div>
+</g:if>
 
-<div class="row col-md-12">
-    <div class="col-md-1"> </div>
-    <g:each in="${RankTiers*.description}" var="tier">
-        <div class="col-md-2">
-            <g:link controller="bestBans" action="${tier}">
-                <div class="row" style="text-align: center">
-                    <g:img  file="TierThumbs/${tier}Thumb.png"/>
-                </div>
-                <div class="row" style="text-align: center"><b>${tier.toUpperCase()}</b></div>
-            </g:link>
-        </div>
-    </g:each>
-    <div class="col-md-1"> </div>
 
-</div>
+<div class="row">
 
-<div class="row col-md-12">
-    <g:render template="info" model="[isHome: true]"/>
-    <p>Thanks for reading! I hope this may serve of use. I intend to make one of these posts for every patch, so look forward to it!</p>
+    <div class="row col-md-9">
+        <g:each in="${RankTiers*.description}" var="tier">
+            <div class="row">
+                <g:link controller="bestBans" action="${tier}">
+                    <div class="col-md-3" style="text-align: center" >
+                        <g:img  file="TierThumbs/${tier}Thumb.png"  width="150" height="150"/>
+                    </div>
+                    <div class="col-md-6" style="top: 60px; bottom: 60px; vertical-align: bottom">
+                        <div class="row"><h3><b>TOP ${tier.toUpperCase()} BANS</b></h3>  </div>
+                        <div class="row">See more</div>
+
+                    </div>
+                    <div class="col-md-3" style="text-align: center">
+                        <g:img  file="TierThumbs/${tier}Thumb.png" width="150" height="150"/>
+                    </div>
+                </g:link>
+            </div>
+            <div class="row">
+                <g:if test="${banMap && banMap[tier] && banMap[tier].size() > 3}">
+                    <g:each in="${banMap[tier]}" var="champData" status="i">
+                        <div class="col-md-3">
+                            <div style="text-align: center"><g:img  file="champIcons/ChampionSplashes/${champData.champion}splash.png"/></div>
+                            <div style="text-align: center"><b>#${i+1}: ${champData.displayName.toUpperCase()}</b></div>
+                            <div style="text-align: center">Influence: ${Math.round(champData.power)} </div>
+                            <div style="text-align: center">Win Rate: ${champData.winrate.round(2)}% </div>
+                            <div style="text-align: center">Pick Rate: ${champData.adjustedPickRate.round(2)}% </div>
+                        </div>
+                    </g:each>
+                </g:if>
+            </div>
+            <hr/>
+        </g:each>
+
+    </div>
+
+    <div class="col-md-3 pull-right"><g:render template="info" model="[isHome: false]"/> </div>
 </div>
 </body>
 </html>
