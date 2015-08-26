@@ -5,15 +5,17 @@ class BestBansController {
 
     def index() {
         Map<String, List<ChampData>> banMap = [:]
+        def dataCount
 
         RankTiers.each{ tier ->
             def champs = ChampData.findAllByRank(tier).sort{-it.power}
             if(champs.size() > 3){
                 banMap[tier.description] = champs[0..3]
             }
+            dataCount = ChampData.countByRank(RankTiers.DIAMOND) // should be the last to finish updating
         }
 
-        def dataCount = ChampData.countByRank(RankTiers.DIAMOND) // should be the last to finish updating
+
 
         render(view: 'index', model: [banMap: banMap, dataCount: dataCount])
     }
