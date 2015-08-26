@@ -21,17 +21,15 @@
 
                 <p>The data is on NA, Ranked Solo. Team Ranked and other countries may have different rates. Here it is!</p>
 
-                <p><a href="http://i.imgur.com/LBiEmUd.png">Bronze</a></p>
+                <p><g:link controller="bestBans" action="bronze">Bronze</g:link></p>
 
-                <p><a href="http://i.imgur.com/rJg5a0H.png">Silver</a></p>
+                <p><g:link controller="bestBans" action="silver">Silver</g:link></p>
 
-                <p><a href="http://i.imgur.com/hhuK3NN.png">Gold</a></p>
+                <p><g:link controller="bestBans" action="gold">Gold</g:link></p>
 
-                <p><a href="http://i.imgur.com/6X1r9kY.png">Platinum</a></p>
+                <p><g:link controller="bestBans" action="platinum">Platinum</g:link></p>
 
-                <p><a href="http://i.imgur.com/O0VAXnD.png">Diamond</a></p>
-
-                <p><a href="https://docs.google.com/spreadsheets/d/1QZ8Oo5eCULi_6LARS5-CDcsIDZWL7bYK-h5U0byOKew/edit?pli=1#gid=2068984042">Top 60 Best Bans Data</a></p>
+                <p><g:link controller="bestBans" action="diamond">Diamond</g:link></p>
 
                 <p>Special thanks to <a href="/u/aMalfunction">/u/aMalfunction</a> for their excellent work in prettying up the data I've given them!</p>
 
@@ -49,11 +47,15 @@
         </div>
         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
-                <p><strong>Elise</strong> absolutely dominates in pretty much every Elo. In Diamond their winrate has been fluctuating strangely which has caused more consistent picks to beat them out.</p>
+                <p><strong>Skarner</strong> wins. No contest.</p>
 
-                <p><strong>Nidalee</strong> has completely disappeared from the ban list, with a sub 50% winrate in all Elos now. Their pick rate has been slowly decreasing has people have realized they're no longer the monster of before.</p>
+                <p><strong>Elise</strong> has been hit hard by the nerfs. While still strong, they're nowhere near the ban status they were last patch.</p>
 
-                <p><strong>Xin Zhao</strong> has also made a considerable rise in the lower Elos</p>
+                <p><strong>Blitzcrank</strong> is very interesting, being one of the top three bans in higher Elos, and ironically being less of a priority ban in lower ones. The meta appears to have shifted to favor the mechanical grabber.</p>
+
+                <p><strong>Gangplank</strong> also appears to be having more consistency as Elo rises, showing that people may be mastering the relatively new playstyle.</p>
+
+                <p><strong>Mordekaiser</strong> hasn't really appeared because while their winrate at bot is high, their pickrate is still fairly low.</p>
             </div>
         </div>
     </div>
