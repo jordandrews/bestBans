@@ -82,7 +82,7 @@
 <div class="container">
 	<div class="alert alert-warning" role="warning">
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-		Please be sure you are using the www.bestbans.com url to access the site.  We are in the process of moving to a more stable/permanent home over the next day or so.
+		Please be sure you are using the <a href="http://www.bestbans.com">www.bestbans.com</a> url to access the site.  We are in the process of moving to a more stable/permanent home over the next day or so.
 	</div>
 	<g:layoutBody/>
 </div>

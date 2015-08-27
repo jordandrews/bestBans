@@ -11,7 +11,7 @@
 		</g:if>
 		<g:else>
 			<ul class="errors">
-				<li>We are currently in the process of moving to a more permanent home in the app.  Please check back at www.bestbans.com within the next day or so</li>
+				<li>We are currently in the process of moving to a more permanent home in the app.  Please check back at <a href="http://www.bestbans.com">www.bestbans.com</a> within the next day or so</li>
 				<li>Contact /u/jonnyy9 if you have any questions.</li>
 			</ul>
 		</g:else>
