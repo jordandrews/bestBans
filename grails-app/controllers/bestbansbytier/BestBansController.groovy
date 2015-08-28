@@ -8,11 +8,11 @@ class BestBansController {
         def dataCount
 
         RankTiers.each{ tier ->
-            def champs = ChampData.findAllByRank(tier).sort{-it.power}
+            def champs = ChampData.findAllByTier(tier).sort{-it.influence}
             if(champs.size() > 3){
                 banMap[tier.description] = champs[0..3]
             }
-            dataCount = ChampData.findAllByRank(tier).size() // should be the last to finish updating
+            dataCount = ChampData.findAllByTier(tier).size() // should be the last to finish updating
         }
 
 
@@ -21,7 +21,7 @@ class BestBansController {
     }
 
     def bronze() {
-        List<ChampData> banList = ChampData.findAllByRank(RankTiers.BRONZE).sort{-it.power}
+        List<ChampData> banList = ChampData.findAllByTier(RankTiers.BRONZE).sort{-it.influence}
         List<ChampData> topTen = []
         if(banList && banList.size() >= 10){
             topTen = banList[0..9]
@@ -30,7 +30,7 @@ class BestBansController {
     }
 
     def silver() {
-        List<ChampData> banList = ChampData.findAllByRank(RankTiers.SILVER).sort{-it.power}
+        List<ChampData> banList = ChampData.findAllByTier(RankTiers.SILVER).sort{-it.influence}
         List<ChampData> topTen = []
         if(banList && banList.size() >= 10){
             topTen = banList[0..9]
@@ -39,7 +39,7 @@ class BestBansController {
     }
 
     def gold() {
-        List<ChampData> banList = ChampData.findAllByRank(RankTiers.GOLD).sort{-it.power}
+        List<ChampData> banList = ChampData.findAllByTier(RankTiers.GOLD).sort{-it.influence}
         List<ChampData> topTen = []
         if(banList && banList.size() >= 10){
             topTen = banList[0..9]
@@ -48,7 +48,7 @@ class BestBansController {
     }
 
     def platinum() {
-        List<ChampData> banList = ChampData.findAllByRank(RankTiers.PLATINUM).sort{-it.power}
+        List<ChampData> banList = ChampData.findAllByTier(RankTiers.PLATINUM).sort{-it.influence}
         List<ChampData> topTen = []
         if(banList && banList.size() >= 10){
             topTen = banList[0..9]
@@ -57,7 +57,7 @@ class BestBansController {
     }
 
     def diamond() {
-        List<ChampData> banList = ChampData.findAllByRank(RankTiers.DIAMOND).sort{-it.power}
+        List<ChampData> banList = ChampData.findAllByTier(RankTiers.DIAMOND).sort{-it.influence}
         List<ChampData> topTen = []
         if(banList && banList.size() >= 10){
             topTen = banList[0..9]

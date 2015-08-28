@@ -104,7 +104,7 @@
 
                 <p>I created a program in Java to gather the data and run these calculations, so I can replicate the data instantly.</p>
 
-                <p>The power level calculation was done as follows:</p>
+                <p>The influence level calculation was done as follows:</p>
 
                 <p>(WR-0.5) * (PR / (1 - BR))</p>
 

@@ -1,4 +1,4 @@
-<%@ page import="bestbansbytier.RankTiers" contentType="text/html;charset=UTF-8" %>
+<%@ page import="java.math.RoundingMode; bestbansbytier.RankTiers" contentType="text/html;charset=UTF-8" %>
 
 
 <html>
@@ -41,9 +41,9 @@
                         <div class="col-md-3">
                             <div style="text-align: center"><g:img  file="champIcons/ChampionSplashes/${champData.champion}splash.png"/></div>
                             <div style="text-align: center"><b>#${i+1}: ${champData.displayName.toUpperCase()}</b></div>
-                            <div style="text-align: center">Influence: ${Math.round(champData.power)} </div>
-                            <div style="text-align: center">Win Rate: ${champData.winrate.round(2)}% </div>
-                            <div style="text-align: center">Pick Rate: ${champData.adjustedPickRate.round(2)}% </div>
+                            <div style="text-align: center">Influence: ${champData.influence.setScale(2, RoundingMode.HALF_UP)} </div>
+                            <div style="text-align: center">Win Rate: ${champData.winrate.setScale(2, RoundingMode.HALF_UP)}% </div>
+                            <div style="text-align: center">Pick Rate: ${champData.adjustedPickRate.setScale(2, RoundingMode.HALF_UP)}% </div>
                         </div>
                     </g:each>
                 </g:if>

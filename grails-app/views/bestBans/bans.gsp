@@ -5,7 +5,7 @@
   Time: 7:57 PM
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="java.math.RoundingMode" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta name='layout' content="main"/>
@@ -35,10 +35,9 @@
                 <div class="col-md-3">
                     <div style="text-align: center"><g:img  file="champIcons/ChampionSplashes/${champData.champion}splash.png"  width="${117}" height="${212}"/></div>
                     <div style="text-align: center"><b>#${i+1}: ${champData.displayName.toUpperCase()}</b></div>
-                    <div style="text-align: center">Influence: ${champData.power.round(2)} </div>
-                    <div style="text-align: center">Win Rate: ${champData.winrate.round(2)}% </div>
-                    <div style="text-align: center">Pick Rate: ${champData.adjustedPickRate.round(2)}% </div>
-
+                    <div style="text-align: center">Influence: ${champData.influence.setScale(2, RoundingMode.HALF_UP)} </div>
+                    <div style="text-align: center">Win Rate: ${champData.winrate.setScale(2, RoundingMode.HALF_UP)}% </div>
+                    <div style="text-align: center">Pick Rate: ${champData.adjustedPickRate.setScale(2, RoundingMode.HALF_UP)}% </div>
                 </div>
                 <g:if test="${i%4==3}">
                     <g:if test="${i<4}">
@@ -80,11 +79,11 @@
                             ${champData.displayName}
                         </div>
                     </td>
-                    <td>${champData.power.round(2)}   </td>
-                    <td>${champData.winrate.round(2)}% </td>
-                    <td>${champData.adjustedPickRate.round(2)}%</td>
-                    <td>${champData.banrate.round(2)}% </td>
-                    <td>${champData.pickrate.round(2)}%</td>
+                    <td>${champData.influence}   </td>
+                    <td>${champData.winrate.setScale(2, RoundingMode.HALF_UP)}% </td>
+                    <td>${champData.adjustedPickRate.setScale(2, RoundingMode.HALF_UP)}%</td>
+                    <td>${champData.banrate.setScale(2, RoundingMode.HALF_UP)}% </td>
+                    <td>${champData.pickrate.setScale(2, RoundingMode.HALF_UP)}%</td>
                 </tr>
             </g:each>
             </tbody>
