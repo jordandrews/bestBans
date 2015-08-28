@@ -1,12 +1,18 @@
 package bestbansbytier
 
 class ChampData {
-    RankTiers rank
+    RankTiers tier
     String champion
-    double winrate
-    double pickrate
-    double banrate
-    double power
+    BigDecimal winrate
+    BigDecimal pickrate
+    BigDecimal banrate
+    BigDecimal influence
+    Date dateCreated
+    Integer ranking
+    ServerRegions region = ServerRegions.NA
+    String patchNumber = "5.16"
+
+
 
     //Setting Domain Class to not be attached to the database
 //    def isAttached() {
@@ -37,8 +43,8 @@ class ChampData {
     }
 
     public int compareTo(ChampData data) {
-        if (this.power > data.power) return -1;
-        if (this.power < data.power) return 1;
+        if (this.influence > data.influence) return -1;
+        if (this.influence < data.influence) return 1;
         return 0;
     }
 }
