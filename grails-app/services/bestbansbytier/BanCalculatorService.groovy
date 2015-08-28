@@ -5,16 +5,10 @@ import java.text.DecimalFormat
 class BanCalculatorService {
     static transactional = false
 
-    Map<RankTiers, List<ChampData>> banMap = [:]
     def daysToCheck = 3
     def delayParse = 500
-    String region = "na" //na, euw, eune, br
 
-    List<ChampData> getBans(tier){
-        return banMap.get(tier)
-    }
-
-    def calculateBans() {
+    def calculateBans(ServerRegions region) {
         //This is the array creator and calculator
         //It starts off with a huge loop that runs once per champion.
         //First, it gathers the HTML of the Lolking site on ban data
@@ -45,7 +39,7 @@ class BanCalculatorService {
                 Double pickrate = 0.0;
 
                 //Days to average
-                String parsedHTMLOrigin = parseWinPickHTML(tier.description, champName, region);
+                String parsedHTMLOrigin = parseWinPickHTML(tier.description, champName, region.name().toLowerCase());
                 for(int k=1; k<=daysToCheck; k++) {
                     String parsedHTML = narrowData(parsedHTMLOrigin, "winrateLineBig", 0, "true");
                     winrate += calculateWinPickRate(parsedHTML, k);
@@ -56,29 +50,33 @@ class BanCalculatorService {
 
                 winrate = winrate/daysToCheck;
                 pickrate = pickrate/daysToCheck;
-                Double power = calculatePower(pickrate, winrate, banrate);
-
-                //Add our new champData to the appropriate place in the map
-                if(champName) { //TODO: is there a bug happening when we don't have results back?
-
-                    def champ = ChampData.findByChampionAndRank(champName, tier)
-                    if(!champ) {
-                        new ChampData(rank: tier,
-                                    champion: champName,
-                                    banrate: banrate,
-                                    winrate: winrate,
-                                    pickrate: pickrate,
-                                    power: power).save(flush: true)
-                    }
-                    else {
-                        champ.banrate = banrate
-                        champ.winrate = winrate
-                        champ.pickrate = pickrate
-                        champ.power = power
-                        champ.save(flush: true)
-                    }
-
+                Double influence = calculateInfluence(pickrate, winrate, banrate);
+                Date today = new Date().clearTime()
+                //Se if an entry already exists in the database
+                def champ = ChampData.findByChampionAndTierAndRegionAndPatchNumberAndDateCreated(champName, tier, region, "5.16", today) //TODO: add patch number variable to the search
+                if(!champ) {    //if not Add our new champData to the database
+                    new ChampData(tier: tier,
+                            champion: champName,
+                            banrate: banrate,
+                            winrate: winrate,
+                            pickrate: pickrate,
+                            dateCreated: today,
+                            influence: influence,
+                            //TODO: patch number here patchNumber: #
+                            region: region
+                    ).save(flush: true)
                 }
+                else { //else if data exists just update and save
+                    champ.banrate = banrate
+                    champ.winrate = winrate
+                    champ.pickrate = pickrate
+                    champ.dateCreated = today
+                    champ.influence = influence
+                    champ.region = region
+                    //TODO: patch number add champ.patchNumber =
+                    champ.save(flush: true)
+                }
+
             }
         }
     }
@@ -216,7 +214,7 @@ class BanCalculatorService {
         return championList;
     }
 
-    Double calculatePower(double pickrate, double winrate, double banrate) {
+    Double calculateInfluence(double pickrate, double winrate, double banrate) {
         DecimalFormat df = new DecimalFormat("#.##");
 
 
