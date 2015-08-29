@@ -8,16 +8,15 @@ class ChampData {
     BigDecimal banrate
     BigDecimal influence
     Date dateCreated
-    Integer ranking
+    Integer rank
+    Integer previousRank
     ServerRegions region = ServerRegions.NA
     String patchNumber = "5.16"
 
-
-
-    //Setting Domain Class to not be attached to the database
-//    def isAttached() {
-//        return false
-//    }
+    static constraints = {
+        rank(nullable: true, blank: true)
+        previousRank(nullable: true, blank: true)
+    }
 
     def getAdjustedPickRate() {
         return (100 * pickrate)/(100-banrate)
