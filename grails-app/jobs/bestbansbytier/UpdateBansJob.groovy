@@ -12,6 +12,9 @@ class UpdateBansJob {
 
     def execute() {
         System.out.println("Running ban calculation job")
-        banCalculatorService.calculateBans(ServerRegions.NA) //na, euw, eune, br
+        ServerRegions.each { region ->
+            banCalculatorService.calculateData(region) //na, euw, eune, br
+            banCalculatorService.assignRanks(region)
+        }
     }
 }

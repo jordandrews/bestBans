@@ -6,8 +6,11 @@ class ChampData {
     BigDecimal winrate
     BigDecimal pickrate
     BigDecimal banrate
+    BigDecimal aggregatedWinrate  //Average winrate over 3 days
+    BigDecimal aggregatedPickrate //Average pickrate over 3 days
+    BigDecimal aggregatedBanrate  //Average banrate over 3 days
     BigDecimal influence
-    Date dateCreated
+    Date createDate = new Date().clearTime()
     Integer rank
     Integer previousRank
     ServerRegions region = ServerRegions.NA

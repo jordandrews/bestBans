@@ -1,4 +1,4 @@
-<%@ page import="grails.util.Environment" %>
+<%@ page import="bestbansbytier.ServerRegions; grails.util.Environment" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,13 +69,22 @@
 				<li><g:link controller="bestBans" action="platinum">Platinum</g:link></li>
 				<li><g:link controller="bestBans" action="diamond">Diamond</g:link></li>
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown pull-right">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Current Region: ${session.region ? session.region.name() : 'NA'}<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<g:each in="${ServerRegions}" var="region">
+							<li><g:link controller="bestBans" action="index" params="[region: region.name()]">${region.name()}</g:link></li>
+						</g:each>
+					</ul>
+				</li>
+			</ul>
+
 			%{--<g:if test="${Environment.current == Environment.DEVELOPMENT}">--}%
-				<div class="ribbon-wrapper"><div class="ribbon">BETA</div></div>
+			<div class="ribbon-wrapper"><div class="ribbon">BETA</div></div>
 			%{--</g:if>--}%
 		</div>
-		<!-- /.navbar-collapse -->
 	</div>
-	<!-- /.container -->
 </nav>
 
 <!-- Page Content -->

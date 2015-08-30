@@ -6,13 +6,16 @@ class BestBansController {
     def index() {
         Map<String, List<ChampData>> banMap = [:]
         def dataCount
-
+        if(params.region){
+            session.region = ServerRegions[params.region]
+        }
+        session.region = session.region instanceof ServerRegions ? session.region : ServerRegions.NA
         RankTiers.each{ tier ->
-            def champs = ChampData.findAllByTier(tier).sort{-it.influence}
+            def champs = fetchRecentChampDataForTierAndRegion(tier, session.region).sort{-it.influence}
             if(champs.size() > 3){
                 banMap[tier.description] = champs[0..3]
             }
-            dataCount = ChampData.findAllByTier(tier).size() // should be the last to finish updating
+            dataCount = champs.size() // should be the last to finish updating
         }
 
 
@@ -21,7 +24,8 @@ class BestBansController {
     }
 
     def bronze() {
-        List<ChampData> banList = ChampData.findAllByTier(RankTiers.BRONZE).sort{-it.influence}
+        session.region = session.region ?: ServerRegions.NA
+        List<ChampData> banList = fetchRecentChampDataForTierAndRegion(RankTiers.BRONZE, session.region).sort{-it.influence}
         List<ChampData> topTen = []
         if(banList && banList.size() >= 10){
             topTen = banList[0..9]
@@ -30,7 +34,8 @@ class BestBansController {
     }
 
     def silver() {
-        List<ChampData> banList = ChampData.findAllByTier(RankTiers.SILVER).sort{-it.influence}
+        session.region = session.region ?: ServerRegions.NA
+        List<ChampData> banList = fetchRecentChampDataForTierAndRegion(RankTiers.SILVER, session.region).sort{-it.influence}
         List<ChampData> topTen = []
         if(banList && banList.size() >= 10){
             topTen = banList[0..9]
@@ -39,7 +44,8 @@ class BestBansController {
     }
 
     def gold() {
-        List<ChampData> banList = ChampData.findAllByTier(RankTiers.GOLD).sort{-it.influence}
+        session.region = session.region ?: ServerRegions.NA
+        List<ChampData> banList = fetchRecentChampDataForTierAndRegion(RankTiers.GOLD, session.region).sort{-it.influence}
         List<ChampData> topTen = []
         if(banList && banList.size() >= 10){
             topTen = banList[0..9]
@@ -48,7 +54,8 @@ class BestBansController {
     }
 
     def platinum() {
-        List<ChampData> banList = ChampData.findAllByTier(RankTiers.PLATINUM).sort{-it.influence}
+        session.region = session.region ?: ServerRegions.NA
+        List<ChampData> banList = fetchRecentChampDataForTierAndRegion(RankTiers.PLATINUM, session.region).sort{-it.influence}
         List<ChampData> topTen = []
         if(banList && banList.size() >= 10){
             topTen = banList[0..9]
@@ -57,11 +64,28 @@ class BestBansController {
     }
 
     def diamond() {
-        List<ChampData> banList = ChampData.findAllByTier(RankTiers.DIAMOND).sort{-it.influence}
+        session.region = session.region ?: ServerRegions.NA
+        List<ChampData> banList = fetchRecentChampDataForTierAndRegion(RankTiers.DIAMOND, session.region).sort{-it.influence}
         List<ChampData> topTen = []
         if(banList && banList.size() >= 10){
             topTen = banList[0..9]
         }
         render(view: 'bans', model: [topTen: topTen, banList: banList, tier: RankTiers.DIAMOND.description])
+    }
+
+    List<ChampData> fetchRecentChampDataForTierAndRegion(def tier, def region) {
+        List<ChampData> resultList = []
+        Date today = new Date().clearTime() //create a date being today with no timestamp
+
+        List<ChampData> champDataToday = ChampData.findAllByTierAndRegionAndCreateDate(tier, region, today)
+        List<ChampData> champDataYesterday = ChampData.findAllByTierAndRegionAndCreateDate(tier, region, today-1)
+        def listOfChampNames = (champDataToday*.champion + champDataYesterday*.champion).unique()
+
+        listOfChampNames.each { name ->
+            def champData = champDataToday.find{it.champion == name} ?: champDataYesterday.find{it.champion == name}
+            resultList.add(champData)
+        }
+
+        return resultList
     }
 }

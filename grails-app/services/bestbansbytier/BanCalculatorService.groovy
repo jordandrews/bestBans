@@ -1,14 +1,12 @@
 package bestbansbytier
 
-import java.text.DecimalFormat
-
 class BanCalculatorService {
     static transactional = false
 
-    def daysToCheck = 3
+    Integer daysToCheck = 3
     def delayParse = 500
 
-    def calculateBans(ServerRegions region) {
+    def calculateData(ServerRegions region) {
         //This is the array creator and calculator
         //It starts off with a huge loop that runs once per champion.
         //First, it gathers the HTML of the Lolking site on ban data
@@ -25,58 +23,67 @@ class BanCalculatorService {
 
         String banParsedHTML = parseBanHTML()
         List<String> champList = championList() //There are 126 champions
+        Date today = new Date().clearTime() //create a date being today with no timestamp
 
-        //Champion list loop
-        champList.each { String champName ->
-            System.out.println("Loading... " + champName.capitalize());
+        //Tier list loop
+        RankTiers.each { tier ->
+            //Champion list loop
+            champList.each { String champName ->
+                System.out.println("Loading... " + champName.capitalize());
 
-            Double banrate = calculateBanrate(champName, banParsedHTML);
+                Double banrate = calculateBanrate(champName, banParsedHTML);
 
-            //Tier list loop
-            RankTiers.each { tier ->
+
                 Thread.sleep(delayParse);
                 Double winrate = 0.0;
                 Double pickrate = 0.0;
 
                 //Days to average
                 String parsedHTMLOrigin = parseWinPickHTML(tier.description, champName, region.name().toLowerCase());
-                for(int k=1; k<=daysToCheck; k++) {
-                    String parsedHTML = narrowData(parsedHTMLOrigin, "winrateLineBig", 0, "true");
-                    winrate += calculateWinPickRate(parsedHTML, k);
+                String parsedHTML = narrowData(parsedHTMLOrigin, "winrateLineBig", 0, "true");
+                winrate += calculateWinPickRate(parsedHTML);
 
-                    parsedHTML = narrowData(parsedHTMLOrigin, "popularLineBig", 0, "true");
-                    pickrate += calculateWinPickRate(parsedHTML, k);
-                }
+                parsedHTML = narrowData(parsedHTMLOrigin, "popularLineBig", 0, "true");
+                pickrate += calculateWinPickRate(parsedHTML);
 
-                winrate = winrate/daysToCheck;
-                pickrate = pickrate/daysToCheck;
-                Double influence = calculateInfluence(pickrate, winrate, banrate);
-                Date today = new Date().clearTime()
                 //Se if an entry already exists in the database
-                def champ = ChampData.findByChampionAndTierAndRegionAndPatchNumberAndDateCreated(champName, tier, region, "5.16", today) //TODO: add patch number variable to the search
+                def champ = ChampData.findByChampionAndTierAndRegionAndPatchNumberAndCreateDate(champName, tier, region, "5.16", today) //TODO: add patch number variable to the search
                 if(!champ) {    //if not Add our new champData to the database
-                    new ChampData(tier: tier,
+
+                    champ = new ChampData(tier: tier,
                             champion: champName,
                             banrate: banrate,
                             winrate: winrate,
                             pickrate: pickrate,
-                            dateCreated: today,
-                            influence: influence,
-                            //TODO: patch number here patchNumber: #
+                            createDate: today,
+                            patchNumber: "5.16", //TODO: patch number here patchNumber: #
                             region: region
-                    ).save(flush: true)
+                    )
                 }
-                else { //else if data exists just update and save
+                else { //else if data exists just update and save (should be a rare case for when server is restarted before the auto populate time for that day)
                     champ.banrate = banrate
                     champ.winrate = winrate
                     champ.pickrate = pickrate
-                    champ.dateCreated = today
-                    champ.influence = influence
                     champ.region = region
                     //TODO: patch number add champ.patchNumber =
-                    champ.save(flush: true)
                 }
+                champ = calculateAggregateValues(champ)
 
+                champ.save(flush: true)
+            }
+        }
+    }
+
+    def assignRanks(ServerRegions region) {
+        Date today = new Date().clearTime()
+        RankTiers.each { RankTiers tier ->
+
+            def i = 1
+            ChampData.findAllByTierAndRegionAndPatchNumberAndCreateDate(tier, region, '5.16',  today).sort{it.influence}.each{ ChampData champ ->
+                champ.rank = i
+                champ.previousRank = ChampData.findByChampionAndTierAndRegionAndPatchNumberAndCreateDate(champ.champion, champ.tier, champ.region, champ.patchNumber, champ.createDate-1)?.rank ?: 0
+                champ.save(flush: true)
+                i++
             }
         }
     }
@@ -214,11 +221,35 @@ class BanCalculatorService {
         return championList;
     }
 
-    Double calculateInfluence(double pickrate, double winrate, double banrate) {
-        DecimalFormat df = new DecimalFormat("#.##");
+    ChampData calculateAggregateValues(ChampData champData) {
+        def winrate = 0
+        def pickrate = 0
+        def banrate = 0
 
+        List<ChampData> dataList = fetchPreviousChampData(champData, daysToCheck)
+        dataList.each{ ChampData dataEntry ->//TODO: change 3 to size of sliding window
+            winrate += dataEntry.winrate
+            pickrate += dataEntry.pickrate
+            banrate += dataEntry.banrate
+        }
 
-        return Double.valueOf(df.format(100 * (pickrate/(100-banrate) * (winrate - 50))));
+        champData.aggregatedWinrate = winrate/(dataList.size())
+        champData.aggregatedPickrate = pickrate/(dataList.size())
+        champData.aggregatedBanrate = banrate/(dataList.size())
+
+        champData.influence = 100 * (champData.aggregatedPickrate/(100-champData.aggregatedBanrate) * (champData.aggregatedWinrate - 50))
+        return champData
+    }
+
+    List<ChampData> fetchPreviousChampData (ChampData champData, Integer numberToInclude) {
+        List<ChampData> dataList = [champData]
+        (1..(numberToInclude-1)).each { i ->
+            def champ = ChampData.findByChampionAndTierAndRegionAndPatchNumberAndCreateDate(champData.champion, champData.tier, champData.region, champData.patchNumber, champData.createDate - i)
+            if(champ) {
+                dataList.add(champ)
+            }
+        }
+        return dataList
     }
 
     String parseWinPickHTML(String division, String champName, String region) throws IOException {
@@ -233,7 +264,7 @@ class BanCalculatorService {
         return parseWebsite("http://www.lolking.net/charts?type=bans");
     }
 
-    Double calculateWinPickRate(String rawHTML, int day) throws IOException {
+    Double calculateWinPickRate(String rawHTML) throws IOException {
         String parsed;
         String data;
         double dataNumb;
@@ -241,15 +272,7 @@ class BanCalculatorService {
         dataNumb = 999;
         parsed = "error error";
 
-        if (day == 1)
-            parsed = rawHTML;
-
-        if (day == 2)
-            parsed = rawHTML.substring(0, rawHTML.lastIndexOf("hover"));
-
-        if (day == 3)
-            parsed = rawHTML.substring(0, rawHTML.substring(0, rawHTML.lastIndexOf("hover")).lastIndexOf("hover"));
-
+        parsed = rawHTML;
         data = lastData(parsed, "hover", -8, ",");
         data = data.replaceAll("[^\\d.]", "");
         dataNumb = Double.parseDouble(data);
