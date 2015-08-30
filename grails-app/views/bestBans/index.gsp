@@ -39,11 +39,7 @@
                 <g:if test="${banMap && banMap[tier] && banMap[tier].size() > 3}">
                     <g:each in="${banMap[tier]}" var="champData" status="i">
                         <div class="col-md-3">
-                            <div style="text-align: center"><g:img  file="champIcons/ChampionSplashes/${champData.champion}splash.png"/></div>
-                            <div style="text-align: center"><b>#${i+1}: ${champData.displayName.toUpperCase()}</b></div>
-                            <div style="text-align: center">Influence: ${champData.influence.setScale(0, RoundingMode.HALF_UP)} </div>
-                            <div style="text-align: center">Win Rate: ${champData.winrate.setScale(2, RoundingMode.HALF_UP)}% </div>
-                            <div style="text-align: center">Pick Rate: ${champData.adjustedPickRate.setScale(2, RoundingMode.HALF_UP)}% </div>
+                            <g:render template="topChamp" model="[champData: champData]"/>
                         </div>
                     </g:each>
                 </g:if>

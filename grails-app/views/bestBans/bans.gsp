@@ -33,11 +33,7 @@
                     <div class="row">
                 </g:if>
                 <div class="col-md-3">
-                    <div style="text-align: center"><g:img  file="champIcons/ChampionSplashes/${champData.champion}splash.png"  width="${117}" height="${212}"/></div>
-                    <div style="text-align: center"><b>#${i+1}: ${champData.displayName.toUpperCase()}</b></div>
-                    <div style="text-align: center">Influence: ${champData.influence.setScale(0, RoundingMode.HALF_UP)} </div>
-                    <div style="text-align: center">Win Rate: ${champData.winrate.setScale(2, RoundingMode.HALF_UP)}% </div>
-                    <div style="text-align: center">Pick Rate: ${champData.adjustedPickRate.setScale(2, RoundingMode.HALF_UP)}% </div>
+                    <g:render template="topChamp" model="[champData: champData]"/>
                 </div>
                 <g:if test="${i%4==3}">
                     <g:if test="${i<4}">
@@ -72,19 +68,7 @@
             </thead>
             <tbody>
             <g:each in="${banList}" var="champData">
-                <tr>
-                    <td>
-                        <div style="float: left">
-                            <g:img  file="champIcons/ChampionThumbs/${champData.champion}Thumb.png"/>
-                            ${champData.displayName}
-                        </div>
-                    </td>
-                    <td>${champData.influence.setScale(0, RoundingMode.HALF_UP)}   </td>
-                    <td>${champData.winrate.setScale(2, RoundingMode.HALF_UP)}% </td>
-                    <td>${champData.adjustedPickRate.setScale(2, RoundingMode.HALF_UP)}%</td>
-                    <td>${champData.banrate.setScale(2, RoundingMode.HALF_UP)}% </td>
-                    <td>${champData.pickrate.setScale(2, RoundingMode.HALF_UP)}%</td>
-                </tr>
+                <g:render template="champDataRow" model="[champData: champData]"/>
             </g:each>
             </tbody>
         </table>
