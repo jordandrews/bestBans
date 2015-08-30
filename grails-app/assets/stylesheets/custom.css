@@ -1,4 +1,15 @@
 
+
+.dropdown-menu {
+    background-color: #222;
+    color:#ffffff;
+}
+
+.dropdown-menu > li > a {
+    color:#ffffff;
+}
+
+
 a {
     color: #336699;
     text-decoration: none;
