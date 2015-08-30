@@ -79,9 +79,9 @@ class BanCalculatorService {
         RankTiers.each { RankTiers tier ->
 
             def i = 1
-            ChampData.findAllByTierAndRegionAndPatchNumberAndCreateDate(tier, region, '5.16',  today).sort{it.influence}.each{ ChampData champ ->
+            ChampData.findAllByTierAndRegionAndPatchNumberAndCreateDate(tier, region, '5.16',  today).sort{-it.influence}.each{ ChampData champ ->
                 champ.rank = i
-                champ.previousRank = ChampData.findByChampionAndTierAndRegionAndPatchNumberAndCreateDate(champ.champion, champ.tier, champ.region, champ.patchNumber, champ.createDate-1)?.rank ?: 0
+                champ.previousRank = ChampData.findByChampionAndTierAndRegionAndPatchNumberAndCreateDate(champ.champion, champ.tier, champ.region, champ.patchNumber, champ.createDate-1)?.rank ?: champ.rank
                 champ.save(flush: true)
                 i++
             }
