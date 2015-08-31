@@ -6,10 +6,9 @@ class BestBansController {
     def index() {
         Map<String, List<ChampData>> banMap = [:]
         def dataCount
-        if(params.region){
-            session.region = ServerRegions[params.region]
-        }
-        session.region = session.region instanceof ServerRegions ? session.region : ServerRegions.NA
+
+        session.region = session.region ?: ServerRegions.NA
+
         RankTiers.each{ tier ->
             def champs = fetchRecentChampDataForTierAndRegion(tier, session.region).sort{-it.influence}
             if(champs.size() > 3){
@@ -17,8 +16,6 @@ class BestBansController {
             }
             dataCount = champs.size() // should be the last to finish updating
         }
-
-
 
         render(view: 'index', model: [banMap: banMap, dataCount: dataCount])
     }
@@ -71,6 +68,11 @@ class BestBansController {
             topTen = banList[0..9]
         }
         render(view: 'bans', model: [topTen: topTen, banList: banList, tier: RankTiers.DIAMOND.description])
+    }
+
+    def changeRegion() {
+        session.region = ServerRegions[params.region]
+        redirect(controller: params.previousController, action: params.previousAction)
     }
 
     List<ChampData> fetchRecentChampDataForTierAndRegion(def tier, def region) {

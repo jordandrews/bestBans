@@ -74,7 +74,7 @@
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Current Region: ${session.region ? session.region.name() : 'NA'}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<g:each in="${ServerRegions}" var="region">
-							<li><g:link controller="bestBans" action="index" params="[region: region.name()]">${region.name()}</g:link></li>
+							<li><g:link controller="bestBans" action="changeRegion" params="[region: region.name(), previousController: params.controller, previousAction: params.action]">${region.name()}</g:link></li>
 						</g:each>
 					</ul>
 				</li>
