@@ -39,7 +39,7 @@
                 <g:if test="${banMap && banMap[tier] && banMap[tier].size() > 3}">
                     <g:each in="${banMap[tier]}" var="champData" status="i">
                         <div class="col-md-3">
-                            <g:render template="topChamp" model="[champData: champData]"/>
+                            <g:render template="topChamp" model="[champData: champData, tempRank: i+1]"/>
                         </div>
                     </g:each>
                 </g:if>

@@ -33,7 +33,7 @@
                     <div class="row">
                 </g:if>
                 <div class="col-md-3">
-                    <g:render template="topChamp" model="[champData: champData]"/>
+                    <g:render template="topChamp" model="[champData: champData, tempRank: i+1]"/>
                 </div>
                 <g:if test="${i%4==3}">
                     <g:if test="${i<4}">
