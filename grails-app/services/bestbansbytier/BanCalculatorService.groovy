@@ -30,7 +30,7 @@ class BanCalculatorService {
             //Champion list loop
             champList.each { String champName ->
                 System.out.println("Loading... ${champName.capitalize()} for tier ${tier.description} and region ${region.description}");
-
+                log.info("Loading... ${champName.capitalize()} for tier ${tier.description} and region ${region.description}")
                 Double banrate = calculateBanrate(champName, banParsedHTML);
 
 
