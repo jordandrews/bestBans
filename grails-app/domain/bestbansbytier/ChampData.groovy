@@ -25,6 +25,10 @@ class ChampData {
         return (100 * pickrate)/(100-banrate)
     }
 
+    def getAdjustedAggregatedPickRate() {
+        return (100 * aggregatedPickrate)/(100-aggregatedBanrate)
+    }
+
     def getDisplayName() {
         if(champion == 'monkeyking'){
             return 'Wukong'
