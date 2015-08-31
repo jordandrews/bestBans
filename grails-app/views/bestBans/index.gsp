@@ -11,7 +11,7 @@
 <g:if test="${dataCount < 126 }" >
     <div class="alert alert-info" role="info">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-        Champion data has not finished populating, and therefore may not be accurate.  Currently data for ${dataCount ?: 0} of 126 champions has been loaded
+        Champion data has not finished populating, and therefore may not be accurate. Choose desired tier to see progress for your tier
     </div>
 </g:if>
 
