@@ -4,10 +4,10 @@
 <div style="text-align: center"><g:img  file="champIcons/ChampionSplashes/${champData.champion}splash.png" title="${champData.displayName}" alt="${champData.champion}"  width="${117}" height="${212}"/></div>
 <div class="row">
     <div style="text-align: center"><b>#${champData.rank ?: tempRank}</b>
+        <b>: ${champData.displayName.toUpperCase()}</b>
         <g:if test="${difference}">
             (<i class='glyphicon glyphicon-arrow-${difference > 0 ? 'up' : 'down'}' style="color: ${difference > 0 ? 'green' : 'red'}">${difference.abs()}</i>)
         </g:if>
-        <b>: ${champData.displayName.toUpperCase()}</b>
     </div>
 </div>
 <div style="text-align: center">Influence: ${champData.influence.setScale(0, RoundingMode.HALF_UP)} </div>
