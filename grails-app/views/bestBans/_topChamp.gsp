@@ -1,7 +1,7 @@
 <%@ page import="java.math.RoundingMode" %>
 
 <g:set var="difference" value="${(champData.previousRank && champData.rank) ? champData.previousRank - champData.rank : 0}" />
-<div style="text-align: center"><g:img  file="champIcons/ChampionSplashes/${champData.champion}splash.png"  width="${117}" height="${212}"/></div>
+<div style="text-align: center"><g:img  file="champIcons/ChampionSplashes/${champData.champion}splash.png" title="${champData.displayName}" alt="${champData.champion}"  width="${117}" height="${212}"/></div>
 <div class="row">
     <div style="text-align: center"><b>#${champData.rank ?: tempRank}</b>
         <g:if test="${difference}">

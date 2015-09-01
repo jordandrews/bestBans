@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta name='layout' content="main"/>
-    <title>Best Bans By Tier</title>
+    <title> Best Bans League Of Legends</title>
 </head>
 
 <body>
@@ -23,15 +23,15 @@
             <div class="row">
                 <g:link controller="bestBans" action="${tier}">
                     <div class="col-md-3" style="text-align: center" >
-                        <g:img  file="TierThumbs/${tier}Thumb.png"  width="150" height="150"/>
+                        <g:img  file="TierThumbs/${tier}Thumb.png" title="${tier}" alt="${tier}" width="150" height="150"/>
                     </div>
                     <div class="col-md-6" style="top: 60px; bottom: 60px; vertical-align: bottom">
-                        <div class="row"><h3><b>TOP ${tier.toUpperCase()} BANS</b></h3>  </div>
+                        <div class="row"><h1><b>TOP ${tier.toUpperCase()} BANS</b></h1>  </div>
                         <div class="row">See more</div>
 
                     </div>
                     <div class="col-md-3" style="text-align: center">
-                        <g:img  file="TierThumbs/${tier}Thumb.png" width="150" height="150"/>
+                        <g:img  file="TierThumbs/${tier}Thumb.png" title="${tier}" alt="${tier}" width="150" height="150"/>
                     </div>
                 </g:link>
             </div>

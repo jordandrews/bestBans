@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name='layout' content="main"/>
-    <title>${tier} bans</title>
+    <title>League of Legends ${tier} bans</title>
 </head>
 
 <body>
@@ -21,7 +21,7 @@
 </g:if>
 <div class="row">
     <div class="col-md-9">
-        <h3>TOP ${tier.toUpperCase()} BANS</h3>
+        <h1>TOP ${tier.toUpperCase()} BANS</h1>
     </div>
 </div>
 
