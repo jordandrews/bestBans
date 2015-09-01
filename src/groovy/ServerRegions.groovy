@@ -1,12 +1,12 @@
 package bestbansbytier
 
 enum ServerRegions { //supports na, euw, eune, br
+    NA("North America"),
     BR("Brazil"),
     EUNE("Europe Nordic & East"),
     EUW("Europe West"),
     //LAN("Latin America North"),
     //LAS("Latin America South"),
-    NA("North America"),
     //OCE("Oceania"),
     //RU("Russia"),
     //TR("Turkey"),
@@ -21,5 +21,9 @@ enum ServerRegions { //supports na, euw, eune, br
 
     String toString() {
         description
+    }
+
+    static List getLolKingSupportedRegions () {
+        return [/*BR, EUNE, EUW,*/ NA]
     }
 }
