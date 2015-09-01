@@ -280,24 +280,35 @@ class BanCalculatorService {
         return dataNumb;
     }
 
-    Double calculateBanrate(String champion, String rawHTML) throws IOException {
-        Double banrate = 0
-        String banData
-        String[] banNumbArray
+    public Double calculateBanrate(String champion, String rawHTML) throws IOException {
+        try {
+            double banrate = 0;
+            String banData;
+            String lowerChamp;
+            String[] banNumbArray;
 
-        banData = narrowData(rawHTML, "LKChart.storeLegacyChart", 0, "script")
+            lowerChamp = champion.toLowerCase();
+            banData = narrowData(rawHTML, "LKChart.storeLegacyChart", 0, "script");
 
-        if(banData.contains(champion)) {
-            banData = narrowData(banData, champion, 0, "}")
-            banData = narrowData(banData, "values1", 12, "\\")
-            banData = banData.replace(","," ")
+            if (banData.contains(lowerChamp)) {
+                banData = narrowData(banData, lowerChamp, 20, "x22,");
+                banData = narrowData(banData, "A\\x22", 5, "\\");
+                banData = banData.replace(",", " ");
 
-            banNumbArray = banData.split(" ")
-            for (String s : banNumbArray)
-                banrate += Double.parseDouble(s)
+                banNumbArray = banData.split(" ");
+                for (String s : banNumbArray)
+                    banrate += Double.parseDouble(s);
+            }
+
+            return banrate;
         }
-
-        return banrate
+        catch(e) {
+            System.out.println(e.message);
+            log.info(e.message)
+            System.out.println("failed loading champion ${champion}");
+            log.info("failed loading champion ${champion}")
+            return 0.0
+        }
     }
 
     String narrowData(String fullText, String startPoint, int adjust, String endPoint) {
