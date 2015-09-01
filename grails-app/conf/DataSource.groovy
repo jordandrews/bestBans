@@ -2,9 +2,9 @@
 dataSource {
     pooled = true
     jmxExport = true
-    driverClassName = "org.h2.Driver"
-    username = "sa"
-    password = ""
+    driverClassName = "org.postgresql.Driver"
+    username = "jonathanlutz"
+    password = "password"
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -20,7 +20,14 @@ environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            driverClassName = "org.postgresql.Driver"
+            dialect = PostgreSQL81Dialect
+
+            uri = new URI("postgres://jonathanlutz:password@localhost:5432/jonathanlutz")
+
+            url = "jdbc:postgresql://" + uri.host + ":" + uri.port + uri.path
+            username = uri.userInfo.split(":")[0]
+            password = uri.userInfo.split(":")[1]
         }
     }
     test {
@@ -33,9 +40,9 @@ environments {
         dataSource {
             dbCreate = "update"
             driverClassName = "org.postgresql.Driver"
-            dialect = org.hibernate.dialect.PostgreSQL81Dialect
+            dialect = PostgreSQL81Dialect
 
-            uri = new URI(System.env.DATABASE_URL?:"postgres://test:test@localhost/test")
+            uri = new URI("postgres://bestbans:password@localhost:5432/bestbans")
 
             url = "jdbc:postgresql://" + uri.host + ":" + uri.port + uri.path
             username = uri.userInfo.split(":")[0]
