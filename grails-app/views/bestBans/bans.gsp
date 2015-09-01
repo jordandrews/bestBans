@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name='layout' content="main"/>
-    <title>League of Legends ${tier} bans</title>
+    <title>Best ${tier} Bans League of Legends </title>
 </head>
 
 <body>
