@@ -19,37 +19,64 @@ class BanCalculatorService {
         //A second loop calculates the average of the winrate/pickrate over the days-amount desired.
         //Finally, all this data is stored into the appropiate array.
 
-        //One loop per champ, one loop per tier, one loop per day.
+        //one loop per tier, one loop per champ
 
-        String banParsedHTML = parseBanHTML()
+//      -------------------------------------------------------------------------------
+//
+//		Take note that in each Parse (ParseWinrate) method, I added an exception for KR. You may want to double check that to make sure it works with you too..
+//		Also note that the urls MUST use a lowercased abbreviation (kr). A capitalized one (KR) causes errors.
+//      In order for the parsing to be effective, any champions in the ChampList with a second part of the name got partially capitalized
+//      (rekSai twistedFate drMundo monkeyKing) Make sure this doesn't conflict with anything you've done.
+//		To make the code work on my side, I had to replace all instances of region.name with regionDotName. Replace as desired.
+//      I commented out all the stuff that involved saving and checking for duplicates. You can return those to normal.
+//      Finally, I put in a print at the top and bottom of the the Champion Loop. Let's you see the thing in action!
+//		
+//      -------------------------------------------------------------------------------
+
+        String parsedHTMLPick
+
+        Boolean lolKingSupported = region in ServerRegions.getLolKingSupportedRegions()
         List<String> champList = championList() //There are 126 champions
         Date today = new Date().clearTime() //create a date being today with no timestamp
 
+        //To parse the banrate, only one call is needed per region
+        String parsedHTMLBan = parseBanHTML(region)
+
+        //To parse the pickrate from OP, only one call is needed per Region
+        if (!lolKingSupported) {
+            parsedHTMLPick = parsePickOpHTML(region)
+        }
+
         //Tier list loop
         RankTiers.each { tier ->
+            System.out.println("---------------------------------------------------${tier}---------------------------------------------------")
+            System.out.println("")
+            Thread.sleep(delayParse) // Sleep each tier just for safety on parsing win rates from op.gg
+
+            //To parse the winrate from OP, only one call is needed per tier
+            String parsedHTMLWin = parseWinHTML(tier, region)
+
             //Champion list loop
             champList.each { String champName ->
-                System.out.println("Loading... ${champName.capitalize()} for tier ${tier.description} and region ${region.description}");
+                System.out.println("Loading... ${champName.capitalize()} for tier ${tier.description} and region ${region.description}")
                 log.info("Loading... ${champName.capitalize()} for tier ${tier.description} and region ${region.description}")
-                Double banrate = calculateBanrate(champName, banParsedHTML);
 
+                Double winrate = findOpRate(champName, parsedHTMLWin)
+                Double banrate = findOpRate(champName, parsedHTMLBan)
+                Double pickrate
 
-                Thread.sleep(delayParse);
-                Double winrate = 0.0;
-                Double pickrate = 0.0;
+                //To parse the pickrate of Lolking, a call must be made for every champion in the tier
+                if (lolKingSupported) {
+                    Thread.sleep(delayParse) // only need to sleep for lolking entries
+                    parsedHTMLPick = parsePickKingHTML(tier, champName, region)
+                    pickrate = findKingRate(champName, parsedHTMLPick)
+                }
+                else {
+                    pickrate = findOpRate(champName, parsedHTMLPick)
+                }
 
-                //Days to average
-                String parsedHTMLOrigin = parseWinPickHTML(tier.description, champName, region.name().toLowerCase());
-                String parsedHTML = narrowData(parsedHTMLOrigin, "winrateLineBig", 0, "true");
-                winrate += calculateWinPickRate(parsedHTML);
-
-                parsedHTML = narrowData(parsedHTMLOrigin, "popularLineBig", 0, "true");
-                pickrate += calculateWinPickRate(parsedHTML);
-
-                //Se if an entry already exists in the database
                 def champ = ChampData.findByChampionAndTierAndRegionAndPatchNumberAndCreateDate(champName, tier, region, "5.16", today) //TODO: add patch number variable to the search
                 if(!champ) {    //if not Add our new champData to the database
-
                     champ = new ChampData(tier: tier,
                             champion: champName,
                             banrate: banrate,
@@ -110,13 +137,13 @@ class BanCalculatorService {
         championList.add("corki");
         championList.add("darius");
         championList.add("diana");
-        championList.add("drmundo");
+        championList.add("drMundo");
         championList.add("draven");
         championList.add("ekko");
         championList.add("elise");
         championList.add("evelynn");
         championList.add("ezreal");
-        championList.add("fiddlesticks");
+        championList.add("fiddleSticks");
         championList.add("fiora");
         championList.add("fizz");
         championList.add("galio");
@@ -129,7 +156,7 @@ class BanCalculatorService {
         championList.add("heimerdinger");
         championList.add("irelia");
         championList.add("janna");
-        championList.add("jarvaniv");
+        championList.add("jarvanIV");
         championList.add("jax");
         championList.add("jayce");
         championList.add("jinx");
@@ -141,9 +168,9 @@ class BanCalculatorService {
         championList.add("kayle");
         championList.add("kennen");
         championList.add("khazix");
-        championList.add("kogmaw");
+        championList.add("kogMaw");
         championList.add("leblanc");
-        championList.add("leesin");
+        championList.add("leeSin");
         championList.add("leona");
         championList.add("lissandra");
         championList.add("lucian");
@@ -152,8 +179,8 @@ class BanCalculatorService {
         championList.add("malphite");
         championList.add("malzahar");
         championList.add("maokai");
-        championList.add("masteryi");
-        championList.add("missfortune");
+        championList.add("masterYi");
+        championList.add("missFortune");
         championList.add("mordekaiser");
         championList.add("morgana");
         championList.add("nami");
@@ -168,7 +195,7 @@ class BanCalculatorService {
         championList.add("poppy");
         championList.add("quinn");
         championList.add("rammus");
-        championList.add("reksai");
+        championList.add("rekSai");
         championList.add("renekton");
         championList.add("rengar");
         championList.add("riven");
@@ -186,7 +213,7 @@ class BanCalculatorService {
         championList.add("soraka");
         championList.add("swain");
         championList.add("syndra");
-        championList.add("tahmkench");
+        championList.add("tahmKench");
         championList.add("talon");
         championList.add("taric");
         championList.add("teemo");
@@ -207,9 +234,9 @@ class BanCalculatorService {
         championList.add("vladimir");
         championList.add("volibear");
         championList.add("warwick");
-        championList.add("monkeyking");
+        championList.add("monkeyKing");
         championList.add("xerath");
-        championList.add("xinzhao");
+        championList.add("xinZhao");
         championList.add("yasuo");
         championList.add("yorick");
         championList.add("zac");
@@ -252,19 +279,36 @@ class BanCalculatorService {
         return dataList
     }
 
-    String parseWinPickHTML(String division, String champName, String region) throws IOException {
-        String parsed;
+    String parsePickKingHTML(RankTiers division, String champName, ServerRegions region) throws IOException {
+        String parsed
 
-
-        parsed = parseWebsite("http://www.lolking.net/champions/" + champName + "&region=" + region + "&map=sr&queue=1x1&league=" + division + "#statistics");
-        return narrowData(parsed, "popularAndWinrateLine", 0, "<");
+        parsed = parseWebsite("http://www.lolking.net/champions/" + champName + "&region=" + region.name().toLowerCase() + "&map=sr&queue=1x1&league=" + division.description + "#statistics")
+        return narrowData(parsed, "popularLineBig", 0, "true")
     }
 
-    String parseBanHTML() throws IOException {
-        return parseWebsite("http://www.lolking.net/charts?type=bans");
+
+    String parseWinHTML(RankTiers division, ServerRegions region) throws IOException {
+        if (region == ServerRegions.KR)
+            return parseWebsite("http://op.gg/statistics/ajax/champion.json/type=win&league=${division.description}&period=today&mapId=1&queue=ranked_solo")
+        else
+            return parseWebsite("http://${region.name().toLowerCase()}.op.gg/statistics/ajax/champion.json/type=win&league=${division.description}&period=today&mapId=1&queue=ranked_solo")
     }
 
-    Double calculateWinPickRate(String rawHTML) throws IOException {
+    String parsePickOpHTML(ServerRegions region) throws IOException {
+        if (region == ServerRegions.KR)
+            return parseWebsite("http://op.gg/statistics/ajax/champion.json/type=picked&league=&period=today&mapId=1&queue=ranked_solo")
+        else
+            return parseWebsite("http://${region.name().toLowerCase()}.op.gg/statistics/ajax/champion.json/type=picked&league=&period=today&mapId=1&queue=ranked_solo")
+    }
+
+    String parseBanHTML(ServerRegions region) throws IOException {
+        if (region == ServerRegions.KR)
+            return parseWebsite("http://op.gg/statistics/ajax/champion.json/type=banned&league=&period=today&mapId=1&queue=ranked_solo")
+        else
+            return parseWebsite("http://${region.name().toLowerCase()}.op.gg/statistics/ajax/champion.json/type=banned&league=&period=today&mapId=1&queue=ranked_solo")
+    }
+
+    Double findKingRate(String champion, String rawHTML) throws IOException {
         String parsed;
         String data;
         double dataNumb;
@@ -273,6 +317,7 @@ class BanCalculatorService {
         parsed = "error error";
 
         parsed = rawHTML;
+
         data = lastData(parsed, "hover", -8, ",");
         data = data.replaceAll("[^\\d.]", "");
         dataNumb = Double.parseDouble(data);
@@ -280,43 +325,29 @@ class BanCalculatorService {
         return dataNumb;
     }
 
-    public Double calculateBanrate(String champion, String rawHTML) throws IOException {
-        try {
-            double banrate = 0;
-            String banData;
-            String lowerChamp;
-            String[] banNumbArray;
+    Double findOpRate(String champion, String rawHTML) throws IOException {
+        Double rate = 0
+        String data
+        String[] numbArray
 
-            lowerChamp = champion.toLowerCase();
-            banData = narrowData(rawHTML, "LKChart.storeLegacyChart", 0, "script");
+        data = narrowData(rawHTML, champion.capitalize(), 0, "span>")
+        data = narrowData(data, "winratio", 11, "%")
 
-            if (banData.contains(lowerChamp)) {
-                banData = narrowData(banData, lowerChamp, 20, "x22,");
-                banData = narrowData(banData, "A\\x22", 5, "\\");
-                banData = banData.replace(",", " ");
+        numbArray = data.split(" ")
+        for (String s : numbArray)
+            rate += Double.parseDouble(s)
 
-                banNumbArray = banData.split(" ");
-                for (String s : banNumbArray)
-                    banrate += Double.parseDouble(s);
-            }
-
-            return banrate;
-        }
-        catch(e) {
-            System.out.println(e.message);
-            log.info(e.message)
-            System.out.println("failed loading champion ${champion}");
-            log.info("failed loading champion ${champion}")
-            return 0.0
-        }
+        return rate
     }
 
     String narrowData(String fullText, String startPoint, int adjust, String endPoint) {
         int textStart;
         int textEnd;
-
         textStart = fullText.indexOf(startPoint) + adjust;
         textEnd = fullText.indexOf(endPoint, textStart);
+        if(textStart < 0 || textEnd < 0) {
+            return "0"
+        }
         return fullText.substring(textStart, textEnd);
     }
 
