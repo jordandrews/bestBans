@@ -3,37 +3,26 @@
         <div class="panel-heading" role="tab" id="headingOne">
             <h4 class="panel-title">
                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    Intro
+                    Introduction
                 </a>
             </h4>
         </div>
         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
-                <p>I've always found the way that people choose bans to be rather jarring. It's based heavily on frustration and apparent power, as opposed to consistency in success over several games.</p>
+                <p>
+                    The way people choose bans is based heavily in frustration, popular opinion, and potential power. But these often lead to inaccurate choices to maximize the chances of winning.
+                    <br/><br/>
 
-                <p>I've decided to make <strong>a ban list that is solely based on winrate, pickrate, and banrate (which is partially added to pickrate).</strong> </p>
+                    Instead, <b>Best Bans calculates the win consistency of every champion for every tier using nothing but winrate, pickrate, and banrate (which partially adjusts pickrate), nothing else.</b>
+                    <br/><br/>
 
-                <p><strong>Nothing else.</strong></p>
+                    Take note that you should <b>always tell your teammates what you intend to ban, or you deny your team the chance of using the consistent champions, creating a net-zero benefit.</b>
+                    <br/><br/>
 
-                <p>Because the list is based on averages, <strong>the list is most useful when you know nearly nothing about either team</strong>.</p>
+                    Because these lists are based on averages, <b>these ban recommendations are most useful when you know nearly nothing about either team, when there is an information vacuum.</b>
 
-                <p>The list calculates which banned champions will net you more wins compared to simply banning an average champion.</p>
-
-                <p>The data is on NA, Ranked Solo. Team Ranked and other countries may have different rates. Here it is!</p>
-
-                <p><g:link controller="bestBans" action="bronze">Bronze</g:link></p>
-
-                <p><g:link controller="bestBans" action="silver">Silver</g:link></p>
-
-                <p><g:link controller="bestBans" action="gold">Gold</g:link></p>
-
-                <p><g:link controller="bestBans" action="platinum">Platinum</g:link></p>
-
-                <p><g:link controller="bestBans" action="diamond">Diamond</g:link></p>
-
-                <p>Special thanks to <a href="/u/aMalfunction">/u/aMalfunction</a> for their excellent work in prettying up the data I've given them!</p>
-
-                <p>As with any bans, <strong>you only get the true benefit by asking your team in advance if they intend to play any of the champions.</strong> Otherwise, you are denying the enemy team AND your team the chance of playing a consistent power.</p>
+                    The more knowledge you have of your own picks, your team composition, and the enemy composition, the less useful these recommendations are.
+                </p>
             </div>
         </div>
     </div>
@@ -41,21 +30,27 @@
         <div class="panel-heading" role="tab" id="headingTwo">
             <h4 class="panel-title">
                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Observations
+                    Why Should I Use Theses?
                 </a>
             </h4>
         </div>
         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
-                <p><strong>Skarner</strong> wins. No contest.</p>
+                <p>
+                    Best Bans calculates win consistency, which matters more than a champion's strength when banning; <b>a champion's strength does not matter if they are not picked enough or most players cannot succesfully use that power.</b>
+                    <br/><br/>
 
-                <p><strong>Elise</strong> has been hit hard by the nerfs. While still strong, they're nowhere near the ban status they were last patch.</p>
+                    Consistency matters more than frustration; <b>obnoxious champions often have crippling weaknesses that lead to low winrates and pickrates.</b> Their consistency, even in lower tiers, is often an illusion.
+                    <br/><br/>
 
-                <p><strong>Blitzcrank</strong> is very interesting, being one of the top three bans in higher Elos, and ironically being less of a priority ban in lower ones. The meta appears to have shifted to favor the mechanical grabber.</p>
+                    As is true with any ban phase, <b>always tell your teammates what you intend to ban, or you deny your team the chance of using the consistent champions, creating a net-zero benefit.</b>
+                    <br/><br/>
 
-                <p><strong>Gangplank</strong> also appears to be having more consistency as Elo rises, showing that people may be mastering the relatively new playstyle.</p>
+                    Because these lists are based on averages, <b>these ban recommendations are most useful when you know nearly nothing about either team, when there is an information vacuum.</b> The more knowledge you have of your own picks,
 
-                <p><strong>Mordekaiser</strong> hasn't really appeared because while their winrate at bot is high, their pickrate is still fairly low.</p>
+                your team composition, and the enemy composition, the less useful these recommendations are.
+
+                </p>
             </div>
         </div>
     </div>
@@ -63,30 +58,20 @@
         <div class="panel-heading" role="tab" id="headingThree">
             <h4 class="panel-title">
                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Why use these suggestions?
+                    Why Isn't X Suggested?
                 </a>
             </h4>
         </div>
         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
             <div class="panel-body">
-                <p>It bears repeating that the list isn't intended to replace specific banning, but is rather intended for use in an information vacuum. <strong>You should largely follow the list when you have little to no clue what compositions or champions either team is running</strong>, a fairly common occurrence.</p>
+                <p>
+                    <b>The simplest answer is that they simply don't win enough or aren't picked enough.</b> You can search the tables at the bottom of each page to find the champion you're interested in; you may be surprised how often they actually win on average.
+                    <br/><br/>
 
-                <p><b>Legitimate reasons for circumventing these suggested bans</b>:</p>
+                    More then that, take note that winrate reflects consistency, not potential strength. <b>Even if a low-winrate champion can theoretically win 100% of the time with perfect play, it doesn't change that on average, you will win against them,
 
-                <p>-The enemy can pick a champion that counters a composition your team has planned</p>
-
-                <p>-You know for sure yourself or your team is playing a champion that counters a suggested ban (Zed isn't so scary when you know Malzahar is on your team)</p>
-
-                <p>-There's a high chance the enemy team has a champion specialist who will be much weaker if their primary champion is banned</p>
-
-
-                <p><b>Reasons to circumvent bans that are not legitimate</b>:</p>
-
-                <p>-A champion is "overpowered." <strong>Bans should not be based on a champion's potential strength, but rather on their win consistency.</strong> Even if Leblanc could theoretically win 100% of the time with perfect play, that situation is so rare that it doesn't change that Leblanc wins only 44% of the time on average. Winrate reflects consistency, not strength.</p>
-
-                <p>-Because your teammates will rage. Let’s assume that your teammates get ticked off every time Leblanc is picked by the enemies. Even with this “buff” caused by annoyed teammates, Leblanc still only wins 44% of the time. Let your teammates be mad; avoiding the ban is still your statistically best chance of success.</p>
-
-                <p>-A champion is annoying to fight. As annoying as certain champions are, if you're trying to maximize your winrate then it's still not a smart idea to ban them simply for being obnoxious. Most obnoxious champions have crippling weaknesses that cause their winrates and/or pickrates to be fairly low.</p>
+                increasing your total LP gains.</b> Many of the most frustrating champions have surprisingly low win consistency.
+                </p>
             </div>
         </div>
     </div>
@@ -94,21 +79,76 @@
         <div class="panel-heading" role="tab" id="headingFour">
             <h4 class="panel-title">
                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                    Methodology
+                    Further Considerations
                 </a>
             </h4>
         </div>
         <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
             <div class="panel-body">
-                <p>All information is gathered from Lolking's winrate and pickrate charts, which can be found for each champ <a href="http://www.lolking.net/champions/malzahar#statistics">here</a>. It grabs the average of the last three days of data.</p>
+                <p>
+                    <b>These bans are recommended even if your teammates may get annoyed by not banning a champion.</b> Let's assume that your teammates get ticked off every time X Champ is picked by the enemies. Even with this <i>annoyance buff</i> that X champ always
 
-                <p>I created a program in Java to gather the data and run these calculations, so I can replicate the data instantly.</p>
+                receives from not being banned, it doesn't change that the champion has a lower consistency than other choices. Unless your teammate intends to be fully toxic, your best chance of success is still to ban X champ.
+                    <br/><br/>
 
-                <p>The influence level calculation was done as follows:</p>
+                    <b>It is meaningless to ban out particular champions to stop your own team from playing them.</b> You deny the enemy team the chance of picking that champion which statistically will be in your favor. This also means that banning from your team
 
-                <p>(WR-0.5) * (PR / (1 - BR))</p>
+                is a net-zero benefit from the ban; it's literally meaningless and only frustrates teammates. Additionally, you have the ability to look up your own teammates and see if their history on the champion defies the average.
+                </p>
+            </div>
+        </div>
+    </div>
 
-                <p>This calculates the amount of games that are lost by not banning a champion, compared to the average. Thanks a bunch to <a href="/u/PhreakRiot">/u/PhreakRiot</a> for their help in refining the formula from the previous post!</p>
+    <div class="panel ${isHome ? 'panel-home' : 'panel-default'}">
+        <div class="panel-heading" role="tab" id="headingFive">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    Patch 5.17 Observations
+                </a>
+            </h4>
+        </div>
+        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+            <div class="panel-body">
+                Keep an eye for the following champions who were buffed:
+                <br/>
+                -Darius
+                <br/><br/>
+
+                And for those who were nerfed:
+                <br/>
+                -Skarner
+                <br/>
+                -Janna
+                <br/>
+                -Gangplank
+                <br/>
+                -Garen
+                <br/>
+                -Kalista
+            </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel ${isHome ? 'panel-home' : 'panel-default'}">
+        <div class="panel-heading" role="tab" id="headingSix">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    Methodology
+                </a>
+            </h4>
+        </div>
+        <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+            <div class="panel-body">
+                <p>
+                    Pickrate and winrate data is gathered from op.gg
+                    <br/><br/>
+
+                    For specific regions, pickrate data is gathered from Lolking for further accuracy.
+                    <br/><br/>
+
+                    The exact formulas to calculate win consistency (influence) can be found in the headers of the table.
+                </p>
             </div>
         </div>
     </div>
