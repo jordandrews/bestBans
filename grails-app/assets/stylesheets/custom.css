@@ -174,3 +174,14 @@ body {
     text-shadow: 0 0 0;
 }
 
+.nav > li.noHover > a {
+    color: #9d9d9d;
+}
+.nav > li.noHover > a:hover,
+.nav > li.noHover > a:focus {
+    color: #9d9d9d;
+    text-decoration: none;
+    cursor: default;
+    background-color: transparent;
+}
+

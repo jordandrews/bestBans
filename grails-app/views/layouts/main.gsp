@@ -70,6 +70,7 @@
 				<li><g:link controller="bestBans" action="diamond">Diamond</g:link></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+				<li class="noHover" style=""><a href="#">Patch 5.17</a></li>
 				<li class="dropdown pull-right">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Current Region: ${session.region ? session.region.name() : 'NA'}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
