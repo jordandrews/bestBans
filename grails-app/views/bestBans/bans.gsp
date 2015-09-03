@@ -5,7 +5,8 @@
   Time: 7:57 PM
 --%>
 
-<%@ page import="java.math.RoundingMode" contentType="text/html;charset=UTF-8" %>
+<%@ page import="bestbansbytier.ServerRegions; java.math.RoundingMode" contentType="text/html;charset=UTF-8" %>
+
 <html>
 <head>
     <meta name='layout' content="main"/>
@@ -21,7 +22,15 @@
 </g:if>
 <div class="row">
     <div class="col-md-9">
-        <h1>TOP ${tier.toUpperCase()} BANS</h1>
+        <h1>
+            TOP ${tier.toUpperCase()} BANS
+            <g:if test="${!(session.region in ServerRegions.lolKingSupportedRegions)}" >
+                <a class='my-tool-tip' data-toggle="tooltip" style="color: #ffffff;" data-placement="right"
+                       title="Due to data limitations in this region, the pickrate of a champion is the same in each tier.">
+                <sup><i class='glyphicon glyphicon-exclamation-sign' style="color: #FFFF99;"></i></sup>
+                </a>
+            </g:if>
+        </h1>
     </div>
 </div>
 
@@ -36,9 +45,6 @@
                     <g:render template="topChamp" model="[champData: champData, tempRank: i+1]"/>
                 </div>
                 <g:if test="${i%4==3}">
-                    <g:if test="${i<4}">
-                    </g:if>
-
                     </div>
                     <br/>
                 </g:if>

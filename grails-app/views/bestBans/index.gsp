@@ -1,4 +1,4 @@
-<%@ page import="java.math.RoundingMode; bestbansbytier.RankTiers" contentType="text/html;charset=UTF-8" %>
+<%@ page import="bestbansbytier.ServerRegions; java.math.RoundingMode; bestbansbytier.RankTiers" contentType="text/html;charset=UTF-8" %>
 
 
 <html>
@@ -26,10 +26,25 @@
                         <g:img  file="TierThumbs/${tier}Thumb.png" title="${tier}" alt="${tier}" width="150" height="150"/>
                     </div>
                     <div class="col-md-6" style="top: 60px; bottom: 60px; vertical-align: bottom">
-                        <div class="row"><h1><b>TOP ${tier.toUpperCase()} BANS</b></h1>  </div>
+                        <div>
+                        <div class="row">
+                            <h1>
+                                <b>TOP ${tier.toUpperCase()} BANS</b>
+                                <g:if test="${!(session.region in ServerRegions.lolKingSupportedRegions)}" >
+                                    <p class='my-tool-tip' data-toggle="tooltip" style="color: #ffffff; display: inline;" data-placement="top"
+                                       title="Due to data limitations in this region, the pickrate of a champion is the same in each tier.">
+                                        <sup><i class='glyphicon glyphicon-exclamation-sign' style="color: #FFFF99;"></i></sup>
+                                    </p>
+                                </g:if>
+                            </h1>
+
+                        </div>
                         <div class="row">See more</div>
+                        </div>
 
                     </div>
+
+
                     <div class="col-md-3" style="text-align: center">
                         <g:img  file="TierThumbs/${tier}Thumb.png" title="${tier}" alt="${tier}" width="150" height="150"/>
                     </div>
@@ -53,3 +68,9 @@
 </div>
 </body>
 </html>
+
+<asset:script>
+    $(document).ready(function(){
+        $('.my-tool-tip').tooltip()
+    });
+</asset:script>
