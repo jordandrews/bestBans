@@ -1,16 +1,16 @@
 package bestbansbytier
 
 enum ServerRegions { //supports na, euw, eune, br
-    NA("North America"),
     BR("Brazil"),
     EUNE("Europe Nordic & East"),
     EUW("Europe West"),
+    KR("Republic of Korea"),
     LAN("Latin America North"),
     LAS("Latin America South"),
+    NA("North America"),
     OCE("Oceania"),
     RU("Russia"),
-    TR("Turkey"),
-    KR("Republic of Korea")
+    TR("Turkey")
 
     final String description
 
