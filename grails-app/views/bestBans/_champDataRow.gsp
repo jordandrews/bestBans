@@ -3,7 +3,7 @@
 <tr>
     <td>
         <div style="float: left">
-            <g:img  file="champIcons/ChampionThumbs/${champData.champion}Thumb.png" title="${champData.displayName}" alt="${champData.champion}"/>
+            <g:img  file="champIcons/ChampionThumbs/${champData.champion.toLowerCase()}Thumb.png" title="${champData.displayName}" alt="${champData.champion}"/>
             ${champData.displayName}
         </div>
     </td>
