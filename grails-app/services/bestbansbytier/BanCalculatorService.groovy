@@ -20,19 +20,6 @@ class BanCalculatorService {
         //Finally, all this data is stored into the appropiate array.
 
         //one loop per tier, one loop per champ
-
-//      -------------------------------------------------------------------------------
-//
-//		Take note that in each Parse (ParseWinrate) method, I added an exception for KR. You may want to double check that to make sure it works with you too..
-//		Also note that the urls MUST use a lowercased abbreviation (kr). A capitalized one (KR) causes errors.
-//      In order for the parsing to be effective, any champions in the ChampList with a second part of the name got partially capitalized
-//      (rekSai twistedFate drMundo monkeyKing) Make sure this doesn't conflict with anything you've done.
-//		To make the code work on my side, I had to replace all instances of region.name with regionDotName. Replace as desired.
-//      I commented out all the stuff that involved saving and checking for duplicates. You can return those to normal.
-//      Finally, I put in a print at the top and bottom of the the Champion Loop. Let's you see the thing in action!
-//		
-//      -------------------------------------------------------------------------------
-
         String parsedHTMLPick
 
         Boolean lolKingSupported = region in ServerRegions.getLolKingSupportedRegions()
@@ -75,7 +62,7 @@ class BanCalculatorService {
                     pickrate = findOpRate(champName, parsedHTMLPick)
                 }
 
-                def champ = ChampData.findByChampionAndTierAndRegionAndPatchNumberAndCreateDate(champName, tier, region, "5.16", today) //TODO: add patch number variable to the search
+                def champ = ChampData.findByChampionAndTierAndRegionAndPatchNumberAndCreateDate(champName, tier, region, "5.17", today) //TODO: add patch number variable to the search
                 if(!champ) {    //if not Add our new champData to the database
                     champ = new ChampData(tier: tier,
                             champion: champName,
@@ -83,7 +70,7 @@ class BanCalculatorService {
                             winrate: winrate,
                             pickrate: pickrate,
                             createDate: today,
-                            patchNumber: "5.16", //TODO: patch number here patchNumber: #
+                            patchNumber: "5.17", //TODO: patch number here patchNumber: #
                             region: region
                     )
                 }
@@ -106,7 +93,7 @@ class BanCalculatorService {
         RankTiers.each { RankTiers tier ->
 
             def i = 1
-            ChampData.findAllByTierAndRegionAndPatchNumberAndCreateDate(tier, region, '5.16',  today).sort{-it.influence}.each{ ChampData champ ->
+            ChampData.findAllByTierAndRegionAndPatchNumberAndCreateDate(tier, region, '5.17',  today).sort{-it.influence}.each{ ChampData champ ->
                 champ.rank = i
                 champ.previousRank = ChampData.findByChampionAndTierAndRegionAndPatchNumberAndCreateDate(champ.champion, champ.tier, champ.region, champ.patchNumber, champ.createDate-1)?.rank ?: champ.rank
                 champ.save(flush: true)
