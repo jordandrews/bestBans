@@ -152,6 +152,23 @@
             </div>
         </div>
     </div>
+
+    <div class="panel ${isHome ? 'panel-home' : 'panel-default'}">
+        <div class="panel-heading" role="tab" id="headingSeven">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    Creators and Contact
+                </a>
+            </h4>
+        </div>
+        <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+            <div class="panel-body">
+                <p>
+                    Best Bans was created by <a href="https://www.reddit.com/user/Aqua_Dragon">Aqua Dragon</a> and <a href="https://www.reddit.com/user/Jonnyy9">Jonnyy9</a>. We can be contacted at <a href="mailto:feedback@bestbans.com">feedback@bestbans.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <asset:script>
