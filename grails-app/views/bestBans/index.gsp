@@ -27,25 +27,25 @@
                     </div>
                     <div class="col-md-6" style="top: 60px; bottom: 60px; vertical-align: bottom">
                         <div>
-                        <div class="row">
-                            <h1>
-                                <b>TOP ${tier.toUpperCase()} BANS</b>
-                                <g:if test="${!(session.region in ServerRegions.lolKingSupportedRegions)}" >
-                                    <p class='my-tool-tip' data-toggle="tooltip" style="color: #ffffff; display: inline;" data-placement="top"
-                                       title="Due to data limitations in this region, the pickrate of a champion is the same in each tier.">
-                                        <sup><i class='glyphicon glyphicon-exclamation-sign' style="color: #FFFF99;"></i></sup>
-                                    </p>
-                                </g:if>
-                            </h1>
+                            <div class="row">
+                                <h1>
+                                    <b>TOP ${tier.toUpperCase()} BANS</b>
+                                    <g:if test="${!(session.region in ServerRegions.lolKingSupportedRegions)}" >
+                                        <p class='my-tool-tip' data-toggle="tooltip" style="color: #ffffff; display: inline;" data-placement="top"
+                                           title="Due to data limitations in this region, the pickrate of a champion is the same in each tier.">
+                                            <sup><i class='glyphicon glyphicon-exclamation-sign' style="color: #FFFF99;"></i></sup>
+                                        </p>
+                                    </g:if>
+                                </h1>
 
-                        </div>
-                        <div class="row">See more</div>
+                            </div>
+                            <div class="row">See more</div>
                         </div>
 
                     </div>
 
 
-                    <div class="col-md-3" style="text-align: center">
+                    <div class="col-md-3 tierIcon2" style="text-align: center">
                         <g:img  file="TierThumbs/${tier}Thumb.png" title="${tier}" alt="${tier}" width="150" height="150"/>
                     </div>
                 </g:link>
@@ -72,5 +72,15 @@
 <asset:script>
     $(document).ready(function(){
         $('.my-tool-tip').tooltip()
+    });
+
+    $(window).resize(function() {
+        if ($(this).width() < 993) {
+           $('.tierIcon2').hide();
+
+        } else {
+            $('.tierIcon2').show();
+        }
+
     });
 </asset:script>
