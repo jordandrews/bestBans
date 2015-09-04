@@ -45,8 +45,11 @@
                     </div>
 
 
-                    <div class="col-md-3 tierIcon2" style="text-align: center">
+                    <div class="col-md-3  hidden-sm  hidden-xs" style="text-align: center">
                         <g:img  file="TierThumbs/${tier}Thumb.png" title="${tier}" alt="${tier}" width="150" height="150"/>
+                    </div>
+                    <div class="col-md-3 hidden-md hidden-lg" style="text-align: center">
+                        <br/><br/>
                     </div>
                 </g:link>
             </div>
@@ -72,15 +75,5 @@
 <asset:script>
     $(document).ready(function(){
         $('.my-tool-tip').tooltip()
-    });
-
-    $(window).resize(function() {
-        if ($(this).width() < 993) {
-           $('.tierIcon2').hide();
-
-        } else {
-            $('.tierIcon2').show();
-        }
-
     });
 </asset:script>
