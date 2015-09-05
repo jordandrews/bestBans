@@ -30,22 +30,45 @@ class ChampData {
     }
 
     def getDisplayName() {
-        if(champion == 'monkeyking'){
+        def lowerCaseName = champion.toLowerCase()
+
+        if(lowerCaseName == 'monkeyking'){
             return 'Wukong'
         }
-        if(champion == 'chogath'){
+        if(lowerCaseName == 'chogath'){
             return "Cho'Gath"
         }
-        if(champion == 'drmundo'){
+        if(lowerCaseName == 'drmundo'){
             return "Dr. Mundo"
         }
-        if(champion == 'xinzhao'){
+        if(lowerCaseName == 'xinzhao'){
             return "Xin Zhao"
         }
-        if(champion == 'tahmkench'){
+        if(lowerCaseName == 'tahmkench'){
             return "Tahm Kench"
         }
-        return champion.capitalize()
+        if(lowerCaseName == 'twistedfate'){
+            return "Twisted Fate"
+        }
+        if(lowerCaseName == 'jarvaniv'){
+            return "Jarvan IV"
+        }
+        if(lowerCaseName == 'missfortune'){
+            return "Miss Fortune"
+        }
+        if(lowerCaseName == 'masteryi'){
+            return "Master Yi"
+        }
+        if(lowerCaseName == 'leesin'){
+            return "Lee Sin"
+        }
+        if(lowerCaseName == 'kogmaw'){
+            return "Kog'Maw"
+        }
+        if(lowerCaseName == 'reksai'){
+            return "Rek'Sai"
+        }
+        return lowerCaseName.capitalize()
     }
 
     public int compareTo(ChampData data) {
