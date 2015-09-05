@@ -81,9 +81,9 @@
 				</li>
 			</ul>
 
-			%{--<g:if test="${Environment.current == Environment.DEVELOPMENT}">--}%
-			<div class="ribbon-wrapper"><div class="ribbon">BETA</div></div>
-			%{--</g:if>--}%
+			<g:if test="${Environment.current == Environment.DEVELOPMENT}">
+				<div class="ribbon-wrapper"><div class="ribbon">DEV</div></div>
+			</g:if>
 		</div>
 	</div>
 </nav>
