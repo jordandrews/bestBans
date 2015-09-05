@@ -22,8 +22,11 @@
         <g:each in="${RankTiers*.description}" var="tier">
             <div class="row">
                 <g:link controller="bestBans" action="${tier}">
-                    <div class="col-md-3" style="text-align: center" >
+                    <div class="col-md-3  hidden-sm  hidden-xs" style="text-align: center">
                         <g:img  file="TierThumbs/${tier}Thumb.png" title="${tier}" alt="${tier}" width="150" height="150"/>
+                    </div>
+                    <div class="col-md-3 hidden-md hidden-lg" style="text-align: center">
+                        <br/><br/>
                     </div>
                     <div class="col-md-6" style="top: 60px; bottom: 60px; vertical-align: bottom">
                         <div>
