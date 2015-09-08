@@ -23,22 +23,9 @@ class UpdateBansJob {
             }
         }
 
-        def currentRegion = null
-        def currentRegionAttempts = 0
         while(failedRegions) {
-            if(failedRegions[0] != currentRegion) {
-                currentRegion = failedRegions[0]
-                currentRegionAttempts = 0
-            }
-            else {
-                Thread.sleep(2000) // Sleep each tier just for safety on parsing win rates from op.gg
-                currentRegionAttempts += 1
-                if(currentRegionAttempts >= 5) {
-                    System.out.println("Unable to fetch data for ${currentRegion} during FINAL ATTEMPT")
-                    log.error("Unable to fetch data for ${currentRegion} during FINAL ATTEMPT")
-                    failedRegions.remove(0)
-                }
-            }
+            Thread.sleep(2000) // Sleep each tier just for safety on parsing win rates from op.gg
+            def currentRegion = failedRegions[0]
             try {
                 banCalculatorService.calculateData(currentRegion)
                 banCalculatorService.assignRanks(currentRegion)
