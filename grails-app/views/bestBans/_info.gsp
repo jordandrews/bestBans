@@ -170,7 +170,7 @@
                 <p>
                     Best Bans was created by <a href="https://www.reddit.com/user/Aqua_Dragon">Aqua Dragon</a> and <a href="https://www.reddit.com/user/Jonnyy9">Jonnyy9</a>. We can be contacted at <a href="mailto:feedback@bestbans.com">feedback@bestbans.com</a>
                     <br/><br/>
-                    For the latest information about the site, ollow us on twitter at <a href="https://twitter.com/BestBans">twitter.com/BestBans</a>
+                    For the latest information about the site, follow us on twitter at <a href="https://twitter.com/BestBans">twitter.com/BestBans</a>
                 </p>
             </div>
         </div>
