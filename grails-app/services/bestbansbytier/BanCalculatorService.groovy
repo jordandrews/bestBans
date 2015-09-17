@@ -62,7 +62,7 @@ class BanCalculatorService {
                     pickrate = findOpRate(champName, parsedHTMLPick)
                 }
 
-                def champ = ChampData.findByChampionAndTierAndRegionAndPatchNumberAndCreateDate(champName, tier, region, "5.17", today) //TODO: add patch number variable to the search
+                def champ = ChampData.findByChampionAndTierAndRegionAndCreateDate(champName, tier, region, today) //TODO: add patch number variable to the search
                 if(!champ) {    //if not Add our new champData to the database
                     champ = new ChampData(tier: tier,
                             champion: champName,
@@ -70,7 +70,7 @@ class BanCalculatorService {
                             winrate: winrate,
                             pickrate: pickrate,
                             createDate: today,
-                            patchNumber: "5.17", //TODO: patch number here patchNumber: #
+                            patchNumber: "5.18", //TODO: patch number here patchNumber: #
                             region: region
                     )
                 }
@@ -79,7 +79,7 @@ class BanCalculatorService {
                     champ.winrate = winrate
                     champ.pickrate = pickrate
                     champ.region = region
-                    //TODO: patch number add champ.patchNumber =
+                    champ.patchNumber = "5.18"
                 }
                 champ = calculateAggregateValues(champ)
 
@@ -93,7 +93,7 @@ class BanCalculatorService {
         RankTiers.each { RankTiers tier ->
 
             def i = 1
-            ChampData.findAllByTierAndRegionAndPatchNumberAndCreateDate(tier, region, '5.17',  today).sort{-it.influence}.each{ ChampData champ ->
+            ChampData.findAllByTierAndRegionAndPatchNumberAndCreateDate(tier, region, '5.18',  today).sort{-it.influence}.each{ ChampData champ ->
                 champ.rank = i
                 champ.previousRank = ChampData.findByChampionAndTierAndRegionAndCreateDate(champ.champion, champ.tier, champ.region, champ.createDate-1)?.rank ?: champ.rank
                 champ.save(flush: true)
