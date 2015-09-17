@@ -6,7 +6,7 @@ import jline.internal.Log
 class UpdateBansJob {
     BanCalculatorService banCalculatorService
     static triggers = {
-        //simple name:'startUpTrigger', startDelay:10000, repeatInterval: 30000, repeatCount: 0
+        simple name:'startUpTrigger', startDelay:10000, repeatInterval: 30000, repeatCount: 0
         cron name: 'dailyTrigger', cronExpression: "0 0 5 * * ?"
     }
 
@@ -19,8 +19,8 @@ class UpdateBansJob {
                 banCalculatorService.assignRanks(region)
             }
             catch(e) {
-                System.out.println("Failed regions ${currentRegion} first time")
-                log.error("Failed regions ${currentRegion} first time")
+                System.out.println("Failed regions ${region} first time")
+                log.error("Failed regions ${region} first time")
                 failedRegions.add(region)
             }
         }
