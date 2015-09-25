@@ -269,7 +269,7 @@ class BanCalculatorService {
     String parsePickKingHTML(RankTiers division, String champName, ServerRegions region) throws IOException {
         String parsed
 
-        parsed = parseWebsite("http://www.lolking.net/champions/" + champName + "&region=" + region.name().toLowerCase() + "&map=sr&queue=1x1&league=" + division.description + "#statistics")
+        parsed = parseWebsite("http://www.lolking.net/champions/" + champName.toLowerCase() + "?region=" + region.name().toLowerCase() + "&map=sr&queue=1x1&league=" + division.description + "#statistics")
         return narrowData(parsed, "popularLineBig", 0, "true")
     }
 
