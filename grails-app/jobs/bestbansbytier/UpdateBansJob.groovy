@@ -19,14 +19,15 @@ class UpdateBansJob {
                 banCalculatorService.assignRanks(region)
             }
             catch(e) {
-                System.out.println("Failed regions ${region} first time")
-                log.error("Failed regions ${region} first time")
+                System.out.println("Failed regions ${region} first time \n ${e.message}")
+                log.error("Failed regions ${region} first time \n ${e.message}")
                 failedRegions.add(region)
             }
         }
 
-        while(failedRegions) {
-            Thread.sleep(2000) // Sleep each tier just for safety on parsing win rates from op.gg
+        def trialCount = 0
+        while(failedRegions && trialCount < 100) {
+            Thread.sleep(10000) // Sleep each tier just for safety on parsing win rates from op.gg
             def currentRegion = failedRegions[0]
             try {
                 banCalculatorService.calculateData(currentRegion)
@@ -34,8 +35,9 @@ class UpdateBansJob {
                 failedRegions.remove(0)
             }
             catch(e){
-                System.out.println("Failed regions ${currentRegion} again")
-                log.error("Failed regions ${currentRegion} again")
+                trialCount += 1
+                System.out.println("Failed regions ${currentRegion} again \n ${e.message}")
+                log.error("Failed regions ${currentRegion} again \n ${e.message}")
             }
         }
     }
