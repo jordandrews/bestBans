@@ -40,5 +40,8 @@ class UpdateBansJob {
                 log.error("Failed regions ${currentRegion} again \n ${e.message}")
             }
         }
+
+        System.out.println("Finished ban calculation ${new Date()}")
+        log.error("Finished ban calculation ${new Date()}")
     }
 }
