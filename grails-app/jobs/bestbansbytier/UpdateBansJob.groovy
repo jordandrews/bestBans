@@ -42,6 +42,6 @@ class UpdateBansJob {
         }
 
         System.out.println("Finished ban calculation ${new Date()}")
-        log.error("Finished ban calculation ${new Date()}")
+        log.info("Finished ban calculation ${new Date()}")
     }
 }
