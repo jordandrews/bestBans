@@ -305,7 +305,10 @@ class BanCalculatorService {
 
         parsed = rawHTML;
 
-        data = lastData(parsed, "hover", -10, ",");
+        data = lastData(parsed, "hover", 0, "x22,");
+        //System.out.println(data)
+        data = narrowData(data, ",", 1, ",")
+        //System.out.println(data)
         data = data.replaceAll("[^\\d.]", "");
         dataNumb = Double.parseDouble(data);
 
