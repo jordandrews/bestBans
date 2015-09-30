@@ -103,7 +103,7 @@
         <div class="panel-heading" role="tab" id="headingFive">
             <h4 class="panel-title">
                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                    Patch 5.18 Observations
+                    Patch 5.19 Observations
                 </a>
             </h4>
         </div>
@@ -111,24 +111,12 @@
             <div class="panel-body">
                 Keep an eye for the following champions who were buffed:
                 <br/>
-                -Lux
-                <br/>
-                -Ezreal
-                <br/>
-                -Caitlyn
+                -Veigar
                 <br/><br/>
 
                 And for those who were nerfed:
                 <br/>
                 Garen
-                <br/>
-                Darius
-                <br/>
-                Mordekaiser
-                <br/>
-                Skarner
-                <br/>
-                Gangplank
             </p>
             </div>
         </div>
