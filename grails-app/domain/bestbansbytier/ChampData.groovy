@@ -22,11 +22,13 @@ class ChampData {
     }
 
     def getAdjustedPickRate() {
-        return (100 * pickrate)/(100-banrate)
+        def adjPickRate = (100 * pickrate)/(100-banrate)
+        return adjPickRate > 99 ? 99.0 : adjPickRate //Never return a rate over 100
     }
 
     def getAdjustedAggregatedPickRate() {
-        return (100 * aggregatedPickrate)/(100-aggregatedBanrate)
+        def adjPickRate = (100 * aggregatedPickrate)/(100-aggregatedBanrate)
+        return adjPickRate > 99 ? 99.0 : adjPickRate //Never return a rate over 100
     }
 
     def getDisplayName() {
