@@ -103,21 +103,22 @@
         <div class="panel-heading" role="tab" id="headingFive">
             <h4 class="panel-title">
                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                    Patch 5.19 Observations
+                    Patch 5.20 Observations
                 </a>
             </h4>
         </div>
         <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
             <div class="panel-body">
-                Keep an eye for the following champions who were buffed:
-                <br/>
-                -Veigar
-                <br/><br/>
+                Keep an eye for the following champions who are on the rise:
+                <ul>
+                    <li>Veigar</li>
+                </ul>
 
                 And for those who were nerfed:
-                <br/>
-                Garen
-            </p>
+                <ul>
+                    <li>Darius</li>
+                    <li>Fiora</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -178,11 +179,12 @@
 <br/>
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Best Bans Ad Top -->
+<!-- Responsive Ad 1 -->
 <ins class="adsbygoogle"
-     style="display:inline-block;width:300px;height:250px"
-     data-ad-client="ca-pub-2222100108279847"
-     data-ad-slot="9076908015"></ins>
+     style="display:block"
+     data-ad-client="ca-pub-7038278618604962"
+     data-ad-slot="7219338736"
+     data-ad-format="auto"></ins>
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
