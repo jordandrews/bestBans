@@ -84,9 +84,5 @@
 </body>
 </html>
 
-<asset:script>
-    $(document).ready(function(){
-        $('.my-tool-tip').tooltip()
-    });
-</asset:script>
+
 

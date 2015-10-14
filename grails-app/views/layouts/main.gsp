@@ -70,7 +70,13 @@
 				<li><g:link controller="bestBans" action="diamond">Diamond</g:link></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="noHover" style=""><a href="#">Patch 5.19</a></li>
+				%{--TODO: <li class="noHover" style=""><a href="#">Oct 7 - Oct 10 </a></li>--}%
+				<li class="noHover" style="">
+					<a data-toggle="tooltip" data-placement="bottom" class=" my-tool-tip" title="Due to lack of data from lolking, Kindred will not be added to bestbans.com until the weekend of Oct. 16 - Oct. 18">
+						Patch 5.20<sup><i class='glyphicon glyphicon-exclamation-sign' style="color: #FFFF99;"></i></sup>
+					</a>
+				</li>
+
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Current Region: ${session.region ? session.region.name() : 'NA'}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -96,6 +102,11 @@
 
 <div class="footer" role="contentinfo"></div>
 <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+<asset:script>
+	$(document).ready(function(){
+        $('.my-tool-tip').tooltip()
+    });
+</asset:script>
 <asset:deferredScripts/>
 </body>
 <footer>
