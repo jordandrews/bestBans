@@ -70,7 +70,7 @@ class BanCalculatorService {
                             winrate: winrate,
                             pickrate: pickrate,
                             createDate: today,
-                            patchNumber: "5.19", //TODO: patch number here patchNumber: #
+                            patchNumber: "5.20", //TODO: patch number here patchNumber: #
                             region: region
                     )
                 }
@@ -79,7 +79,7 @@ class BanCalculatorService {
                     champ.winrate = winrate
                     champ.pickrate = pickrate
                     champ.region = region
-                    champ.patchNumber = "5.19"
+                    champ.patchNumber = "5.20"
                 }
                 champ = calculateAggregateValues(champ)
 
@@ -93,7 +93,7 @@ class BanCalculatorService {
         RankTiers.each { RankTiers tier ->
 
             def i = 1
-            ChampData.findAllByTierAndRegionAndPatchNumberAndCreateDate(tier, region, '5.19',  today).sort{-it.influence}.each{ ChampData champ ->
+            ChampData.findAllByTierAndRegionAndPatchNumberAndCreateDate(tier, region, '5.20',  today).sort{-it.influence}.each{ ChampData champ ->
                 champ.rank = i
                 champ.previousRank = ChampData.findByChampionAndTierAndRegionAndCreateDate(champ.champion, champ.tier, champ.region, champ.createDate-1)?.rank ?: champ.rank
                 champ.save(flush: true)
@@ -155,6 +155,7 @@ class BanCalculatorService {
         championList.add("kayle");
         championList.add("kennen");
         championList.add("khazix");
+        //championList.add("kindred");
         championList.add("kogMaw");
         championList.add("leblanc");
         championList.add("leeSin");
