@@ -72,8 +72,8 @@
 			<ul class="nav navbar-nav navbar-right">
 				%{--TODO: <li class="noHover" style=""><a href="#">Oct 7 - Oct 10 </a></li>--}%
 				<li class="noHover" style="">
-					<a data-toggle="tooltip" data-placement="bottom" class=" my-tool-tip" title="Due to lack of data from lolking, Kindred will not be added to bestbans.com until the weekend of Oct. 16 - Oct. 18">
-						Patch 5.20<sup><i class='glyphicon glyphicon-exclamation-sign' style="color: #FFFF99;"></i></sup>
+					<a data-toggle="tooltip" data-placement="bottom" class=" my-tool-tip" title="We apologize, lolking is taking longer than expected to post data for Kindred.  If this problem continues we shall find a work around.">
+						Patch 5.21<sup><i class='glyphicon glyphicon-exclamation-sign' style="color: #FFFF99;"></i></sup>
 					</a>
 				</li>
 
