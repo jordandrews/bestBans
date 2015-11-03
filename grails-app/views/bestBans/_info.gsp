@@ -111,13 +111,16 @@
             <div class="panel-body">
                 Keep an eye for the following champions who are on the rise:
                 <ul>
-                    <li>Veigar</li>
+                    <li>Cho'gath</li>
+                    <li>Kassadin</li>
+                    <li>Zilean</li>
                 </ul>
 
                 And for those who were nerfed:
                 <ul>
-                    <li>Darius</li>
-                    <li>Fiora</li>
+                    <li>Gangplank</li>
+                    <li>Riven</li>
+                    <li>Veigar</li>
                 </ul>
             </div>
         </div>
