@@ -155,7 +155,7 @@ class BanCalculatorService {
         championList.add("kayle");
         championList.add("kennen");
         championList.add("khazix");
-        //championList.add("kindred");
+        championList.add("kindred");
         championList.add("kogMaw");
         championList.add("leblanc");
         championList.add("leeSin");

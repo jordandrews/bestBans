@@ -72,9 +72,10 @@
 			<ul class="nav navbar-nav navbar-right">
 				%{--TODO: <li class="noHover" style=""><a href="#">Oct 7 - Oct 10 </a></li>--}%
 				<li class="noHover" style="">
-					<a data-toggle="tooltip" data-placement="bottom" class=" my-tool-tip" title="We apologize, lolking is taking longer than expected to post data for Kindred.  If this problem continues we shall find a work around.">
-						Patch 5.21<sup><i class='glyphicon glyphicon-exclamation-sign' style="color: #FFFF99;"></i></sup>
-					</a>
+				<a>Patch 5.21</a>
+					%{--TODO: for champ data not available <a data-toggle="tooltip" data-placement="bottom" class=" my-tool-tip" title="We apologize, lolking is taking longer than expected to post data for Kindred.  If this problem continues we shall find a work around.">--}%
+						%{--Patch 5.21<sup><i class='glyphicon glyphicon-exclamation-sign' style="color: #FFFF99;"></i></sup>--}%
+					%{--</a>--}%
 				</li>
 
 				<li class="dropdown">
