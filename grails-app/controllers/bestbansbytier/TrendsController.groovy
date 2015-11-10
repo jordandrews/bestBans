@@ -19,7 +19,7 @@ class TrendsController {
             List dayEntry = [entryDate.format('MMM-dd-YY')]
             RankTiers.each{ tier ->
                 def champEntry = champEntries.find{it.tier == tier && it.createDate == entryDate}
-                dayEntry.add(champEntry?.influence ?: 0)
+                dayEntry.add(champEntry ? (champEntry["${params.stat}"] ?: 0) : 0)
             }
             dataPoints.add(dayEntry)
         }

@@ -14,6 +14,7 @@
             <legend>Search</legend>
             <label for="champion">Champion</label>
             <g:select name="champion" id='champSelect' type="select" from="${ChampData.getChampSelect()}" optionValue="displayName" optionKey="value"/>
+            <g:select name="stat" id='stat' type="select" from="${['influence', 'pickrate', 'banrate', 'winrate']}"/>
             <button name="button" id="searchButton" class="btn-primary">search</button>
         </fieldset>
     </form>
@@ -29,8 +30,6 @@
 <asset:script>
     $(document).ready(function(){
         $('.my-tool-tip').tooltip()
-        $('#champSelect').change()
-
     });
 
      google.load('visualization', '1', {packages: ['corechart', 'line']});
