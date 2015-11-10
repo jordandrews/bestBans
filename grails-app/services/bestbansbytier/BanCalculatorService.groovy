@@ -3,7 +3,7 @@ package bestbansbytier
 class BanCalculatorService {
     static transactional = false
 
-    Integer daysToCheck = 3
+    Integer daysToCheck = 4
     def delayParse = 500
 
     def calculateData(ServerRegions region) {
@@ -242,7 +242,7 @@ class BanCalculatorService {
         def banrate = 0
 
         List<ChampData> dataList = fetchPreviousChampData(champData, daysToCheck)
-        dataList.each{ ChampData dataEntry ->//TODO: change 3 to size of sliding window
+        dataList.each{ ChampData dataEntry ->
             winrate += dataEntry.winrate
             pickrate += dataEntry.pickrate
             banrate += dataEntry.banrate
