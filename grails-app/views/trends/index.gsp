@@ -85,7 +85,7 @@
             height: 600
           };
 
-          var action = 'http://localhost:8080/bestBansByTier/trends/collectDataPoints';
+          var action = "${createLink(controller:'trends', action: 'collectDataPoints')}";
           var formData = $('#searchForm').serializeArray();
                     $.ajax({
                         url: action,
