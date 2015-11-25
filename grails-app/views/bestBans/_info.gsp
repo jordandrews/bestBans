@@ -103,26 +103,23 @@
         <div class="panel-heading" role="tab" id="headingFive">
             <h4 class="panel-title">
                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                    Patch 5.22 Observations
+                    Patch 5.23 Observations
                 </a>
             </h4>
         </div>
         <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
             <div class="panel-body">
-                This patch is very exciting.
-                %{--Keep an eye for the following champions who are on the rise:--}%
-                %{--<ul>--}%
-                    %{--<li>Cho'gath</li>--}%
-                    %{--<li>Kassadin</li>--}%
-                    %{--<li>Zilean</li>--}%
-                %{--</ul>--}%
+                Keep an eye for the following champions who are on the rise:
+                <ul>
+                    <li>Zed</li>
+                    <li>Zilean</li>
+                </ul>
 
-                %{--And for those who were nerfed:--}%
-                %{--<ul>--}%
-                    %{--<li>Gangplank</li>--}%
-                    %{--<li>Riven</li>--}%
-                    %{--<li>Veigar</li>--}%
-                %{--</ul>--}%
+                And for those who were nerfed:
+                <ul>
+                    <li>Miss Fortune</li>
+                    <li>Irelia</li>
+                </ul>
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@ class ChampData {
     Integer rank
     Integer previousRank
     ServerRegions region = ServerRegions.NA
-    String patchNumber = "5.22"
+    String patchNumber = "5.23"
 
     static constraints = {
         rank(nullable: true, blank: true)
